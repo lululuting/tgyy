@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+
+/* CSS reset */
+body, div, p, span, nav, header, main, footer, i, em, strong, label, th, td, dl, ul, li, dt, dd, h1, h2, h3, h4, h5, h6, ul, ol, form, input, select, textarea, button{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+img{
+	width: 100%;
+	border: 0;
+	background-size: cover;
+	vertical-align: middle;
+}
+
+/*重置input-placeholder 颜色*/
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:#999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#999;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#999;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#999;
+}
+
+
+
+/*重置a标签样式*/
+a {text-decoration:none;
+  color:#333
+}
+a:link {text-decoration:none;}     /* 未被访问的链接     */
+a:visited {color:#333}  /* 已被访问过的链接    */
+a:hover {text-decoration:none;}    /* 鼠标悬浮在上的链接  */
+a:active {color:#333}   /* 鼠标点中激活链接    */
+
+body{
+	  font-size: .28rem; /*28px*/
+    color: #666;/*主要颜色*/
+}
+li{list-style: none;}
+i,em{font-style: normal;}
+
+/*浮动*/
+.fl{float: left;}
+.fr{float: right;}
+.clr{clear: both;}
+.pa{position:absolute;}
+.pr{position:relative;}
+.oh{overflow: hidden; }
+.db{display: block;}
+.di{display: inline-block;}
+
+/* 文字省略和缩进 */
+.ellipsis{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.t-indent{text-indent:2em;}
+
+/*字体颜色*/
+.c-3{color:#333;}
+.c-6{color:#666;}
+.c-9{color:#999;}
+.c-f{color: #fff}
+.c-b{color: black;}
+.c-g{color:#79c34b;}
+.c-r{color:#fa5858;}
+.c-l{color: #4fabfa;}
+
+/*背景颜色*/
+.bg-f{background-color:#fff;}
+.bg-c{background-color:#cccc;}
+.bg-gray{background-color:#cccccc;}
+
+/*字体*/
+.f24{font-size:.24rem;}
+.f26{font-size:.26rem;}
+.f28{font-size:.28rem;}
+.f32{font-size:.3rem;}
+.f36{font-size:.36rem;}
+.f40{font-size:.4rem;}
+.f44{font-size:.44rem;}
+.f48{font-size:.48rem;}
+.f52{font-size:.52rem;}
+.f56{font-size:.56rem;}
+.f60{font-size:.6rem;}
+.f64{font-size:.64rem;}
+.f68{font-size:.68rem;}
+.f72{font-size:.72rem;}
+.fwb{font-weight: bold}
+
+/*行高*/
+.lh40{line-height: .4rem; }
+.lh50{line-height: .5rem; }
+.lh60{line-height: .6rem; }
+.lh70{line-height: .7rem; }
+.lh80{line-height: .8rem; }
+.lh90{line-height: .9rem; }
+.lh100{line-height: 1rem; }
