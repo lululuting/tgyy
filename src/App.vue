@@ -5,12 +5,14 @@
 </template>
 
 <script>
+
 export default {
   name: 'app'
 }
 </script>
-
 <style lang="css">
 @import "assets/css/base.css";
 @import "assets/font/iconfont.css";
+@import "../static/animate/animate.min.css";
+@import "../static/waves/waves.min.css";
 </style>

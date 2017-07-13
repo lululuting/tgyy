@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1499767316429'); /* IE9*/
-  src: url('iconfont.eot?t=1499767316429#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1499767316429') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1499767316429') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1499767316429#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1499921353282'); /* IE9*/
+  src: url('iconfont.eot?t=1499921353282#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1499921353282') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1499921353282') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1499921353282#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -255,6 +255,8 @@
 
 .icon-bilibili:before { content: "\e600"; }
 
+.icon-taiyang:before { content: "\e743"; }
+
 .icon-piclight:before { content: "\e7b7"; }
 
 .icon-voicelight:before { content: "\e7b9"; }
@@ -304,4 +306,6 @@
 .icon-back_android_light:before { content: "\e7ee"; }
 
 .icon-down_light:before { content: "\e7ef"; }
+
+.icon-yueliang:before { content: "\e611"; }
 

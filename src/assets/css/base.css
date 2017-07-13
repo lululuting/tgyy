@@ -19,7 +19,6 @@ img{
 	width: 100%;
 	border: 0;
 	background-size: cover;
-	vertical-align: middle;
 }
 
 /*重置input-placeholder 颜色*/
@@ -40,7 +39,7 @@ img{
 
 /*重置a标签样式*/
 a {text-decoration:none;
-  color:#333
+  color:#333;
 }
 a:link {text-decoration:none;}     /* 未被访问的链接     */
 a:visited {color:#333}  /* 已被访问过的链接    */
@@ -49,7 +48,7 @@ a:active {color:#333}   /* 鼠标点中激活链接    */
 
 body{
 	  font-size: .28rem; /*28px*/
-    color: #666;/*主要颜色*/
+    color: #333;/*主要颜色*/
 }
 li{list-style: none;}
 i,em{font-style: normal;}
@@ -88,6 +87,7 @@ i,em{font-style: normal;}
 .bg-gray{background-color:#cccccc;}
 
 /*字体*/
+.f20{font-size:.20rem;}
 .f24{font-size:.24rem;}
 .f26{font-size:.26rem;}
 .f28{font-size:.28rem;}
