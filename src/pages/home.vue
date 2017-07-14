@@ -5,15 +5,14 @@
 
       <div class="main">
           <ul class="top_nav">
-              <li class="waves-effect waver-button action">国产</li>
-              <li class="waves-effect waver-button">欧美</li>
-              <li class="waves-effect waver-button">日韩</li>
-              <li class="waves-effect waver-button">经典</li>
-              <li class="waves-effect waver-button">套图</li>
+              <li class="waves-effect waver-button" @click="selected($index)" :class="{active: actionName == $index}" v-for="(item,$index) in nav" v-text="item.option"></li>
           </ul>
 
-
+        <_tabIndex></_tabIndex>
       </div>
+
+
+
   </div>
 </template>
 <script>
@@ -21,11 +20,32 @@
 
   import _sideMenu from '../components/common_sideMenu.vue'
 
+  import _tabIndex from '../components/tab_index.vue'
+
+
   export default {
-    components: {
-      _header,
-      _sideMenu
-    }
+      data() {
+          return{
+            actionName: '',
+            nav: [
+              {option:'首页'},
+              {option:'国产'},
+              {option:'日韩'},
+              {option:'欧美'},
+              {option:'套图'}
+            ]
+          }
+      },
+      methods: {
+          selected: function($index) {
+            this.actionName = $index
+          }
+      },
+      components: {
+        _header,
+        _sideMenu,
+        _tabIndex
+      }
   }
 </script>
 <style lang="scss" scoped>
@@ -38,7 +58,7 @@
             height: 1rem;
             text-align: center;
             line-height: 1rem;
-            background: #fb7299;
+            background: #8fdac6;
             box-sizing: border-box;
             color: #fff;
             font-size: .26rem;
@@ -49,7 +69,7 @@
                 width: 20%;
                 overflow: hidden;
                 border-radius: .1rem;
-                opacity: 0.8;
+                opacity: 0.6;
 
                 a{
                   color: #fff;
@@ -57,10 +77,8 @@
 
             }
 
-            .action{
-              opacity: 1;
-              border-bottom:.03rem solid #fff ;
-
+            .active{
+                opacity: 1;
             }
 
         }

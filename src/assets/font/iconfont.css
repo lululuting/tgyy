@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1499921353282'); /* IE9*/
-  src: url('iconfont.eot?t=1499921353282#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1499921353282') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1499921353282') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1499921353282#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1500027407655'); /* IE9*/
+  src: url('iconfont.eot?t=1500027407655#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1500027407655') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1500027407655') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1500027407655#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -133,6 +133,8 @@
 
 .icon-unlock:before { content: "\e6c2"; }
 
+.icon-selection:before { content: "\e6ce"; }
+
 .icon-present:before { content: "\e6d3"; }
 
 .icon-squarecheckfill:before { content: "\e6d4"; }
@@ -187,6 +189,12 @@
 
 .icon-down:before { content: "\e703"; }
 
+.icon-yanjing:before { content: "\e65d"; }
+
+.icon-upstagefill:before { content: "\e70e"; }
+
+.icon-upstage:before { content: "\e70f"; }
+
 .icon-creativefill:before { content: "\e718"; }
 
 .icon-creative:before { content: "\e719"; }
@@ -214,6 +222,8 @@
 .icon-playfill:before { content: "\e74f"; }
 
 .icon-stop:before { content: "\e750"; }
+
+.icon-group:before { content: "\e753"; }
 
 .icon-hotfill:before { content: "\e757"; }
 
@@ -273,9 +283,15 @@
 
 .icon-video:before { content: "\e7c8"; }
 
+.icon-niaoju:before { content: "\e616"; }
+
 .icon-skinfill:before { content: "\e7cc"; }
 
 .icon-skin:before { content: "\e7cd"; }
+
+.icon-ouzhou:before { content: "\e607"; }
+
+.icon-gengduo:before { content: "\e617"; }
 
 .icon-my_light:before { content: "\e7d5"; }
 
@@ -295,6 +311,8 @@
 
 .icon-friend_light:before { content: "\e7e3"; }
 
+.icon-medal_light:before { content: "\e7e6"; }
+
 .icon-video_light:before { content: "\e7e9"; }
 
 .icon-search_list_light:before { content: "\e7e8"; }
@@ -308,4 +326,6 @@
 .icon-down_light:before { content: "\e7ef"; }
 
 .icon-yueliang:before { content: "\e611"; }
+
+.icon-guoneichangxian:before { content: "\e636"; }
 
