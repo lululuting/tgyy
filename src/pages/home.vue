@@ -1,87 +1,75 @@
 <template lang="html">
   <div>
-      <_header></_header>
-      <_sideMenu></_sideMenu>
-
-      <div class="main">
-          <ul class="top_nav">
-              <li class="waves-effect waver-button" @click="selected($index)" :class="{active: actionName == $index}" v-for="(item,$index) in nav" v-text="item.option"></li>
-          </ul>
-
-        <_tabIndex></_tabIndex>
-      </div>
-
-
+    <_header v-on:tabName="getTabName"></_header>
+    <_sideMenu></_sideMenu>
+    <_returnTop></_returnTop>
+    <div class="main">
+      <component :is='currentView' keep-alive></component>
+    </div>
 
   </div>
 </template>
 <script>
   import _header from '../components/common_header.vue'
-
   import _sideMenu from '../components/common_sideMenu.vue'
+  import _returnTop from '../components/common_returnTop.vue'
 
   import _tabIndex from '../components/tab_index.vue'
+  import _tabDomestic from '../components/tab_domestic.vue'
+  import _tabJapanKorea from '../components/tab_JapanKorea.vue'
+  import _tabOccident from '../components/tab_occident.vue'
+  import _tabPicture from '../components/tab_picture.vue'
+
+
+
 
 
   export default {
-      data() {
-          return{
-            actionName: '',
-            nav: [
-              {option:'首页'},
-              {option:'国产'},
-              {option:'日韩'},
-              {option:'欧美'},
-              {option:'套图'}
-            ]
-          }
-      },
-      methods: {
-          selected: function($index) {
-            this.actionName = $index
-          }
-      },
-      components: {
-        _header,
-        _sideMenu,
-        _tabIndex
+    data(){
+      return{
+        currentView: '_tabIndex'
       }
+    },
+    methods: {
+      getTabName: function (tabName){
+        this.currentView = tabName
+      }
+    },
+    mounted: function () {// 相当于$(function(){...code..})
+      var l_top=0;
+      $(window).scroll(function(){
+        var n_top = $(window).scrollTop();
+
+        if(n_top>100){
+          $('.top_nav').addClass('nav_fixed')
+          $('.main').addClass('mt100');
+
+          $('.return_top').show();
+        }else{
+          $('.top_nav').removeClass('nav_fixed')
+          $('.main').removeClass('mt100');
+
+          $('.return_top').hide();
+        }
+
+        l_top=n_top;
+      });
+    },
+    components: {
+      _header,
+      _sideMenu,
+      _returnTop,
+      _tabIndex,
+      _tabDomestic,
+      _tabJapanKorea,
+      _tabOccident,
+      _tabPicture,
+    }
   }
 </script>
 <style lang="scss" scoped>
-    .main {
-        overflow: hidden;
-        margin-top: .99rem;
-
-
-        .top_nav{
-            height: 1rem;
-            text-align: center;
-            line-height: 1rem;
-            background: #8fdac6;
-            box-sizing: border-box;
-            color: #fff;
-            font-size: .26rem;
-
-
-            li{
-                float: left;
-                width: 20%;
-                overflow: hidden;
-                border-radius: .1rem;
-                opacity: 0.6;
-
-                a{
-                  color: #fff;
-                }
-
-            }
-
-            .active{
-                opacity: 1;
-            }
-
-        }
-    }
+  .main {
+    overflow: hidden;
+  }
 
 </style>

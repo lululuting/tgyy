@@ -2,7 +2,7 @@
   <div class="bg_box">
     <swiper :options="swiperOption"  ref="mySwiper">
       <!-- 这部分放你要渲染的那些内容 -->
-      <swiper-slide v-for="item in banner" class="waves-effect  waves-light">
+      <swiper-slide v-for="item in banner" class="waves-effect waves-light">
         <img  :src="item.src" alt="">
       </swiper-slide>
       <!-- 这是轮播的小圆点 -->
@@ -12,30 +12,26 @@
 
     <ul class="classify_nav">
       <li class="waves-effect waver-button">
-        <i class="iconfont icon-hotfill"></i>
-        <p class="tit">热门</p>
-      </li>
-      <li class="waves-effect waver-button">
-        <i class="iconfont icon-rankfill"></i>
+        <i class="iconfont icon-rankfill c-ef7222"></i>
         <p class="tit">排行</p>
       </li>
       <li class="waves-effect waver-button">
-        <i class="iconfont icon-creativefill"></i>
+        <i class="iconfont icon-creativefill c-ffbe4a"></i>
         <p class="tit">看点</p>
       </li>
       <li class="waves-effect waver-button">
-        <i class="iconfont icon-warnfill"></i>
-        <p class="tit">重口</p>
+        <i class="iconfont icon-gaoqingshexiang c-62c7db"></i>
+        <p class="tit">高清</p>
       </li>
       <li class="waves-effect waver-button">
-        <i class="iconfont icon-rechargefill"></i>
-        <p class="tit">VIP</p>
+        <i class="iconfont icon-shoufei c-8fdac6"></i>
+        <p class="tit">氪金</p>
       </li>
     </ul>
 
     <div class="modular_box">
     <div class="title_box waves-effect waver-button">
-      <span class="left"><i class="iconfont icon-guoneichangxian"></i>国产</span>
+      <span class="left"><i class="iconfont icon-iconjiudianzhuanqu35"></i>国产</span>
       <span class="right">当前<i class="num">123</i>个视频 <i class="iconfont icon-gengduo"></i></span>
     </div>
 
@@ -209,7 +205,7 @@
 
     <div class="modular_box">
       <div class="title_box waves-effect waver-button">
-        <span class="left"><i class="iconfont icon-piclight"></i>套图</span>
+        <span class="left"><i class="iconfont icon-gongju-jingdian"></i>套图</span>
         <span class="right">当前<i class="num">123</i>个视频 <i class="iconfont icon-gengduo"></i></span>
       </div>
 
@@ -305,7 +301,6 @@
     },
     //定义这个sweiper对象
     computed: {
-
       swiper() {
         return this.$refs.mySwiper.swiper;
       }
@@ -328,19 +323,20 @@
     .classify_nav{
         overflow: hidden;
         background: #fff;
+        color:#666;
 
         li{
             float: left;
             text-align: center;
-            width: 20%;
+            width: 25%;
             padding:.1rem 0;
 
             .iconfont{
                 font-size: .5rem;
-                color: #8fdac6;
+
             }
             .tit{
-                margin: .05rem 0;
+                margin: .1rem 0;
                 font-size:.24rem;
             }
         }
@@ -366,7 +362,7 @@
                 float:right;
 
                 .num{
-                    color: #8fdac6;
+                    color: #ffbe4a;
                 }
 
                 .iconfont{

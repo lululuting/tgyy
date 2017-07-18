@@ -82,7 +82,7 @@
             // 主题样式切换
             themeSwitch: function () {
               this.themeColor=!this.themeColor
-              alert($themeColor)
+
             }
 
 

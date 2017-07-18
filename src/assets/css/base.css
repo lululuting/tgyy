@@ -7,7 +7,7 @@ body, div, p, span, nav, header, main, footer, i, em, strong, label, th, td, dl,
 	padding: 0;
 	border: 0;
 	outline: 0;
-	font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 
 
@@ -76,10 +76,16 @@ i,em{font-style: normal;}
 .c-6{color:#666;}
 .c-9{color:#999;}
 .c-f{color: #fff}
-.c-b{color: black;}
-.c-g{color:#79c34b;}
-.c-r{color:#fa5858;}
-.c-l{color: #4fabfa;}
+.c-8fdac6{color:#8fdac6;}
+.c-f09d9d{color: #f09d9d}
+.c-fa5858{color:#fa5858;}
+.c-ffbe4a{color: #ffbe4a;}
+.c-ef7222{color: #ef7222;}
+.c-dbece2{color: #dbece2;}
+.c-62c7db{color: #62c7db;}
+.c-0094b0{color: #0094b0;}
+.c-003d76{color: #003d76;}
+
 
 /*背景颜色*/
 .bg-f{background-color:#fff;}
@@ -87,7 +93,7 @@ i,em{font-style: normal;}
 .bg-gray{background-color:#cccccc;}
 
 /*字体*/
-.f20{font-size:.20rem;}
+.f20{font-size:.2rem;}
 .f24{font-size:.24rem;}
 .f26{font-size:.26rem;}
 .f28{font-size:.28rem;}
@@ -112,3 +118,5 @@ i,em{font-style: normal;}
 .lh80{line-height: .8rem; }
 .lh90{line-height: .9rem; }
 .lh100{line-height: 1rem; }
+
+.mt100{margin-top: 1rem}
