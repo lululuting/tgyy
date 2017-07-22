@@ -36,7 +36,7 @@
     </div>
 
     <ul class="list_box">
-      <li class="item waves-effect  waves-light">
+      <router-link to="/particulars" class="item waves-effect  waves-light">
         <img src="../assets/images/banner_01.jpg" alt="">
 
         <div class="info">
@@ -47,7 +47,8 @@
             <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
           </div>
         </div>
-      </li>
+      </router-link>
+
       <li class="item waves-effect  waves-light">
         <img src="../assets/images/banner_01.jpg" alt="">
 

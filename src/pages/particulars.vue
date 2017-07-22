@@ -1,10 +1,10 @@
 <template lang="html">
   <div>
       <!--头部-->
-      <div v-show="topShowHide" class="top_box">
-          <span class="back waves-effect  waves-light">
+      <div v-show="topShowHide" :class="{'top_bg':topBg}" class="top_box">
+          <a class="back waves-effect  waves-light" href="javascript:history.go(-1);">
               <i class="iconfont icon-back"></i>
-          </span>
+          </a>
           <p class="title">av001</p>
           <span class="more waves-effect  waves-light">
               <i class="iconfont icon-moreandroid"></i>
@@ -12,7 +12,7 @@
       </div>
 
       <!--播放器-->
-      <div class="player_box" :class="{'iffull': videoFull}">
+      <div class="player_box" :class="{'iffull':videoFull}">
           <!--播放封面-->
           <div class="load_layer">
               <img class="" src="../assets/images/banner_01.jpg" >
@@ -52,17 +52,17 @@
 
           <!--播放结束黑屏 重播 或者看看其他的-->
           <div class="video_end">
-            <div class="action_box">
-              <span @click="rePlay()" class="replay_icon waves-effect waves-button">
-                <i class="iconfont icon-refresh"></i>
-                <p>重新播放</p>
-              </span>
+              <div class="action_box">
+                  <span @click="rePlay()" class="replay_icon waves-effect waves-button">
+                      <i class="iconfont icon-refresh"></i>
+                      <p>重新播放</p>
+                  </span>
 
-              <span class="waves-effect waves-button">
-                <i class="iconfont icon-share"></i>
-                <p>分享</p>
-              </span>
-            </div>
+                  <span class="waves-effect waves-button">
+                      <i class="iconfont icon-share"></i>
+                      <p>分享</p>
+                  </span>
+              </div>
           </div>
 
           <div class="video_box">
@@ -74,25 +74,209 @@
 
       <!--点赞 分享 收藏 缓存-->
       <ul class="video_action_box">
-          <li class="c-f09d9d waves-effect">
-              <i class="iconfont icon-appreciate"></i><i>123</i>
+          <li @click="clickPraise()" class="c-f09d9d waves-effect">
+              <i class="iconfont icon-appreciate"></i><i class="num">123</i>
           </li>
 
-          <li class="c-ffbe4a waves-effect">
-              <i class="iconfont icon-favor"></i><i>12</i>
+          <li @click="clickCollection()" class="c-ffbe4a waves-effect">
+              <i class="iconfont icon-favor"></i><i class="num">12</i>
           </li>
 
-          <li class="c-62c7db waves-effect">
-              <i class="iconfont icon-share"></i><i>13</i>
+          <li @click="clickShare()" class="c-62c7db waves-effect">
+              <i class="iconfont icon-share"></i><i>分享</i>
           </li>
 
-          <li class="c-8fdac6 waves-effect">
+          <li @click="clickDownload()" class="c-8fdac6 waves-effect">
              <i class="iconfont icon-down"></i><i>缓存</i>
           </li>
       </ul>
+
+      <!--标题 播放量 内容介绍 面包屑-->
+      <div class="video_info_box">
+          <h1 class="title">【日常打架】几把骨大战几把瘸</h1>
+
+          <div class="page_view">
+              <div class="left_data">
+                  <span>
+                      <i class="iconfont icon-bofang"></i>
+                      100
+                  </span>
+
+                  <span>
+                      <i class="iconfont icon-danmukai"></i>
+                      21
+                  </span>
+              </div>
+
+              <i @click="videoIndoOpen()" :class="{'icon-fold':openInfo}" class="open_icon iconfont icon-unfold"></i>
+          </div>
+
+          <div class="info_box">
+            <div class="info">
+              自制  有参考HTF手书AV386928，BGM：【96猫】こちら、幸福安心委员会です，略有改词伪全员向，主要是恶魔和面具的拟人别问我为啥没有刀龙…虽然是反派但终究是人类就是觉得如果没有剧情需要和主角光环，恶魔应该还是比人类厉害
+            </div>
+
+
+            <div class="crumbs_nav">
+              <a href="" target="_self" class="" >主页</a>
+              <a href="" target="_self" class="">国产</a>
+              av12305886
+            </div>
+          </div>
+
+
+      </div>
+
+      <!--评论 显示最火的5条-->
+      <div class="comment_box" >
+
+          <p class="title" >评论 <span class="c-9" >( 236 )</span></p>
+
+          <ul class="comment_list">
+              <li class="item" href="">
+                <a class="user_pic" href="">
+                  <img src="../assets/images/user_pic.png">
+                </a>
+                <div class="user_name_box">
+                  <p class="user_name">几把威</p>
+                  <p class="user_time">两分钟前</p>
+                </div>
+                <span @click="clickPraise()" class="praise"><i class="iconfont icon-appreciate"></i><i class="num">666</i></span>
+                <a class="text" href="">
+                  上一次看到这个的时候，金星还在撸管...
+                </a>
+              </li>
+              <li class="item" href="">
+                <a class="user_pic" href="">
+                  <img src="../assets/images/user_pic.png">
+                </a>
+                <div class="user_name_box">
+                  <p class="user_name">几把威</p>
+                  <p class="user_time">两分钟前</p>
+                </div>
+                <span @click="clickPraise()" class="praise"><i class="iconfont icon-appreciate"></i><i class="num">666</i></span>
+                <a class="text" href="">
+                  上一次看到这个的时候，金星还在撸管...
+                </a>
+              </li>
+              <li class="item" href="">
+                <a class="user_pic" href="">
+                  <img src="../assets/images/user_pic.png">
+                </a>
+                <div class="user_name_box">
+                  <p class="user_name">几把威</p>
+                  <p class="user_time">两分钟前</p>
+                </div>
+                <span @click="clickPraise()" class="praise"><i class="iconfont icon-appreciate"></i><i class="num">666</i></span>
+                <a class="text" href="">
+                  上一次看到这个的时候，金星还在撸管...
+                </a>
+              </li>
+              <li class="item" href="">
+                <a class="user_pic" href="">
+                  <img src="../assets/images/user_pic.png">
+                </a>
+                <div class="user_name_box">
+                  <p class="user_name">几把威</p>
+                  <p class="user_time">两分钟前</p>
+                </div>
+                <span @click="clickPraise()" class="praise"><i class="iconfont icon-appreciate"></i><i class="num">666</i></span>
+                <a class="text" href="">
+                  上一次看到这个的时候，金星还在撸管...
+                </a>
+              </li>
+              <li class="item" href="">
+                <a class="user_pic" href="">
+                  <img src="../assets/images/user_pic.png">
+                </a>
+                <div class="user_name_box">
+                  <p class="user_name">几把威</p>
+                  <p class="user_time">两分钟前</p>
+                </div>
+                <span @click="clickPraise()" class="praise"><i class="iconfont icon-appreciate"></i><i class="num">666</i></span>
+                <a class="text" href="">
+                  上一次看到这个的时候，金星还在撸管...
+                </a>
+              </li>
+          </ul>
+          <!--点击更多评论-->
+          <span class="more_comment_btn" href="">点击查看更多评论</span>
+
+      </div>
+
+      <!--视频相关-->
+      <div class="related_video_box">
+          <p class="title">视频相关</p>
+
+          <div class="video_list">
+              <a class="item" href="">
+                  <span class="left_video_pic">
+                    <img src="../assets/images/user_box_bg_12312ad.png">
+                  </span>
+
+                  <div class="right_video_info">
+                      <span class="video_title">【老马与老奶奶不得不说的故事】-Sarcasm- [圣主/瓦龙/圣主]</span>
+                      <div class="video_data">
+                        <span>时长：123分钟</span>
+                        <span>类型：国产</span>
+                      </div>
+
+                      <div class="video_data">
+                        <span class="player_num">播放：1.1万</span>
+                        <span class="text_num">
+                          弹幕：79
+                        </span>
+                      </div>
+                  </div>
+              </a>
+              <a class="item" href="">
+                    <span class="left_video_pic">
+                      <img src="../assets/images/user_box_bg_12312ad.png">
+                    </span>
+
+                <div class="right_video_info">
+                  <span class="video_title">【成龙历险记丨拟人化】-Sarcasm- [圣主/瓦龙/圣主]</span>
+                  <div class="video_data">
+                    <span>时长：113分钟</span>
+                    <span>类型：国产</span>
+                  </div>
+
+                  <div class="video_data">
+                    <span class="player_num">播放：1.1万</span>
+                    <span class="text_num">
+                            弹幕：719
+                          </span>
+                  </div>
+                </div>
+              </a>
+              <a class="item" href="">
+                    <span class="left_video_pic">
+                      <img src="../assets/images/user_box_bg_12312ad.png">
+                    </span>
+
+                <div class="right_video_info">
+                  <span class="video_title">【老马与老奶奶不得不说的故事】-Sarcasm- [圣主/瓦龙/圣主]</span>
+                  <div class="video_data">
+                    <span>时长：123分钟</span>
+                    <span>类型：欧美</span>
+                  </div>
+
+                  <div class="video_data">
+                    <span class="player_num">播放：1.1万</span>
+                    <span class="text_num">弹幕：12</span>
+                  </div>
+                </div>
+              </a>
+          </div>
+      </div>
+
+      <div class="c-9 f24" style="text-align: center; padding:.2rem 0">那种网站怎么可能会有备案呢(ღ˘⌣˘ღ)</div>
+
   </div>
 </template>
 <script>
+
+
   export default {
       data(){
           return{
@@ -105,10 +289,11 @@
               getCurrentTime:false,// 进度条定时器
               videoFull:false,// 全屏
               towSecsHide:'',// 2秒后隐藏
+              openInfo:false,
+              topBg:false,
           }
       },
       methods:{
-
           // 播放封面 只出现一次
           loadPlayer:function () {
               if (video.paused) {
@@ -182,14 +367,51 @@
                       clearTimeout($this.getCurrentTime);
                       $this.ifShow=false;
                       $this.topShowHide =true;
+                      $this.videoFull=false;
 
                       $('.video_end').css('display','flex');
+
                   }
               },1000);
           },
           // 全屏与退出全屏
           full:function () {
-            this.videoFull =! this.videoFull;
+              this.videoFull =! this.videoFull;
+          },
+          // 打开视频介绍
+          videoIndoOpen:function () {
+          this.openInfo=!this.openInfo;
+          let $height = $('.video_info_box .info').height()+$('.crumbs_nav').height()+40;
+
+          if (this.openInfo){
+            $('.video_info_box .info_box ').css('height',$height/100+'rem');
+          }else {
+            $('.video_info_box .info_box ').css('height','.4rem');
+
+          }
+        },
+
+          // 点赞
+          clickPraise:function () {
+              // ajax code...
+              $(event.currentTarget).find('.iconfont').addClass('icon-appreciate_fill_light');
+              $(event.currentTarget).find('.num').text( Number($(event.currentTarget).find('.num').text())+1);
+          },
+          // 收藏
+          clickCollection:function () {
+              // ajax code...
+              $(event.currentTarget).find('.iconfont').addClass('icon-favor_fill_light');
+              $(event.currentTarget).find('.num').text( Number($(event.currentTarget).find('.num').text())+1);
+          },
+          // 分享
+          clickShare:function () {
+              // ajax code...
+
+          },
+          // 下载
+          clickDownload:function () {
+              // ajax code...
+              alert("下载");
           },
       },
       mounted () {
@@ -207,14 +429,18 @@
           $(document).on('click touchend','.video_box,.control_bar,.top_box',function() {
               clearInterval($this.towSecsHide);
 
-              $this.towSecsHide = setTimeout(function () {
-                  $this.ifShow=false;
-                  $this.topShowHide =$this.ifShow;
-              },3000)
+
+              if(!video.paused && $(window).scrollTop()<=$('.player_box').height()-$('.top_box').height()){
+                  $this.towSecsHide = setTimeout(function () {
+                      $this.ifShow=false;
+                      $this.topShowHide =$this.ifShow;
+                  },3000)
+              }
           });
 
           $('.player_box').on('touchmove','.video_box,.control_bar,.top_box',function() {
               clearInterval($this.towSecsHide);
+
               $this.ifShow=true;
               $this.topShowHide =$this.ifShow;
           });
@@ -229,6 +455,20 @@
               let $width = $('.timeline').width()/video.duration*video.currentTime;
               $('.timeline').children().css('width',$width/100+'rem');
           });
+
+
+          $(window).scroll(function () {
+              let top = $(window).scrollTop();
+
+              if(top>=$('.player_box').height()-$('.top_box').height()){
+                  clearInterval($this.towSecsHide);
+
+                  $this.topBg=true;
+                  $this.topShowHide=true;
+              }else {
+                  $this.topBg=false;
+              }
+          })
       }
   }
 </script>
@@ -246,6 +486,7 @@
     z-index: 1001;
     background-color: transparent;
     font-size: .32rem;
+    transition: .5s all;
     color: #fff;
 
     .back{
@@ -276,9 +517,12 @@
       color: #fff;
     }
   }
+  .top_bg{
+    background-color: #8fdac6;
+  }
   .iffull{
     position: fixed !important;
-    z-index: 9999 !important;
+    z-index: 1000 !important;
     width: 100% !important;
     height: 100% !important;
     background-color: black;
@@ -466,25 +710,223 @@
     overflow: hidden;
     background-color: #fff;
     border-bottom:.1rem solid #fafafa;
-
-
-
-  li{
+    li{
       width: 25%;
       overflow: hidden;
       float:left;
       line-height: 1rem;
       font-size:.24rem;
-
-
-
-  .iconfont{
-          font-size: .5rem;
-          line-height: 1rem;
-          vertical-align: sub;
-          margin-right: .1rem;
+      .iconfont{
+        font-size: .5rem;
+        line-height: 1rem;
+        vertical-align: sub;
+        margin-right: .1rem;
       }
     }
+  }
+
+  .video_info_box{
+    overflow: hidden;
+    padding: .2rem;
+    border-bottom:.1rem solid #fafafa;
+
+    .title{
+      display: block;
+      line-height: .4rem;
+      font-size: .36rem;
+      font-weight: 500;
+      color: #333;
+      margin-bottom: .2rem;
+    }
+    .page_view{
+      position: relative;
+      margin-bottom: .2rem;
+      color: #999;
+
+      span{
+        margin-right: .4rem;
+      }
+
+      .left_data{
+        display: inline-block;
+      }
+      .open_icon{
+        position: absolute;
+        right: 0;
+        top: -.05rem;
+        font-size: .4rem !important;
+      }
+      .iconfont{
+        font-size: .32rem;
+      }
+    }
+    .info_box{
+      height:.4rem;
+      line-height: .4rem;
+      transition: .5s all;
+      overflow: hidden;
+
+
+      .info{
+        line-height: .4rem;
+        font-size: .28rem;
+        color: #999;
+      }
+
+
+      .crumbs_nav{
+        margin-top: .4rem;
+        color: #999;
+
+        a{
+          font-size: .28rem;
+          color: #8fdac6;
+        }
+
+        a:after{
+          display: inline-block;
+          font-size: .28rem;
+          content: "\e617";
+          color: #999;
+          font-family:"iconfont";
+          font-style:normal;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+    }
+  }
+
+
+  .comment_box{
+    overflow: hidden;
+    border-bottom: .1rem solid #fafafa;
+    .title{
+      padding: 0 .2rem;
+      margin-top: .2rem;
+    }
+    .comment_list{
+      padding: 0 .2rem;
+      overflow: hidden;
+
+      .item{
+        display: block;
+        position: relative;
+        overflow: hidden;
+        border-bottom: .01rem solid #adadad;
+        padding:  .4rem 0 .4rem 1rem;
+        color: #999;
+        .user_pic{
+          position: absolute;
+          top: .4rem;
+          left: 0;
+          width: .8rem;
+          height: .8rem;
+          overflow: hidden;
+          border-radius: 50%;
+        }
+        .user_name_box{
+          max-width: 60%;
+          color: #999;
+          display: block;
+          margin-bottom: .2rem;
+          .user_name{
+            margin-bottom: .05rem;
+          }
+          .user_time{
+            font-size: .16rem;
+          }
+        }
+        .praise{
+          position: absolute;
+          top: .4rem;
+          right: 0;
+          color: #999;
+
+          .iconfont{
+            font-size: .32rem;
+            margin-right: .1rem;
+          }
+        }
+        .text{
+          color: #666;
+        }
+      }
+      .item:last-child{
+        border: none;
+      }
+
+    }
+
+    .more_comment_btn{
+      margin-bottom: .4rem;
+      display: block;
+      height: .5rem;
+      line-height: .5rem;
+      font-size: .28rem;
+      color: #999;
+      text-align: center;
+    }
+  }
+
+
+
+  .related_video_box{
+    border-bottom: .1rem solid #fafafa;
+
+    .title{
+      padding: 0 .2rem;
+      margin-top: .4rem;
+    }
+    .video_list{
+      padding: 0 .2rem;
+      .item{
+        display: block;
+        position: relative;
+        padding: .2rem 0 .2rem 2.7rem;
+        height: 1.6rem;
+        overflow: hidden;
+        border-bottom: .01rem solid #999;
+
+        .left_video_pic{
+          position: absolute;
+          left: 0;
+          width: 2.5rem;
+          height: 1.6rem;
+          border-radius: .1rem;
+          overflow: hidden;
+        }
+        .right_video_info{
+          .video_title{
+            display: block;
+            max-height:.8rem;
+            line-height: .4rem;
+            font-size: .28rem;
+            color: #333;
+            overflow: hidden;
+          }
+
+          .video_data{
+            display: block;
+            overflow: hidden;
+            line-height: .4rem;
+            font-size: .24rem;
+            color: #666;
+
+            span{
+              display: inline-block;
+              width: 50%;
+              float: left;
+            }
+          }
+
+        }
+      }
+      .item:last-child{
+        border: none;
+      }
+    }
+
   }
 
 </style>

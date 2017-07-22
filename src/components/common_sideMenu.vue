@@ -5,13 +5,12 @@
           <div class="user_box waves-effect  waves-light">
               <div class="top_box">
                   <div class="user_pic">
-                      <a href="">
+                      <router-link to="/userCenter">
                           <img src="../assets/images/user_pic.png" alt="">
-                      </a>
+                      </router-link >
                   </div>
 
                   <div class="action_box">
-                      <i class="iconfont icon-mail waves-effect waver-button"></i>
                       <i @click="themeSwitch()"  :class="{'icon-yueliang':themeColor}"  class="iconfont icon-taiyang waves-effect waver-button"> </i>
                   </div>
               </div>
@@ -33,22 +32,10 @@
           <!--option选项-->
           <div class="nav_con">
               <ul class="nav_list">
-                  <li class="action waves-effect waves-button"><a href=""><i class="iconfont icon-home"></i>首页</a></li>
+                  <li class="waves-effect waves-button"><a href=""><i class="iconfont icon-home"></i>首页</a></li>
                   <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-favor"></i>我的收藏</a></li>
-                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-upstage"></i>我的荣耀</a></li>
-                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-down"></i>离线缓存</a></li>
-              </ul>
-
-              <ul class="nav_list">
-                <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-discover"></i>路况</a></li>
-                <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-light"></i>开车</a></li>
-                <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-group"></i>车队</a></li>
-                <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-record"></i>记录仪</a></li>
-              </ul>
-
-              <ul class="nav_list">
-                <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-settings"></i>设置</a></li>
-                <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-skin"></i>主题</a></li>
+                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-skin"></i>主题</a></li>
+                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-settings"></i>设置</a></li>
               </ul>
           </div>
       </div>
@@ -81,11 +68,12 @@
             },
             // 主题样式切换
             themeSwitch: function () {
-              this.themeColor=!this.themeColor
-
+                this.themeColor=!this.themeColor
             }
-
-
+        },
+        mounted (){
+            let $height = $(window).height() - $('.user_box').height();
+            $('.nav_con').css('height',$height/100+'rem');
         }
     }
 
@@ -95,7 +83,7 @@
 
       .side_menu{
           width: 100%;
-          max-height: 100%;
+          height: 100%;
           overflow-y: scroll;
           position: fixed;
           left: 0;
@@ -204,6 +192,7 @@
 
               .nav_con{
                   padding: .2rem 0;
+                  background: #fff;
 
                   $bg: #{$themeColor};
                   @if $bg != '#8fdac6' {
@@ -226,16 +215,16 @@
                               padding: .3rem 0;
                           }
                       }
-                      .action{
-                          color: #fff;
-                          background: rgba(102, 102, 102, 0.31);
-                          .iconfont{
-                              color: #fff;
-                          }
-                          a{
-                              color: #fff;
-                          }
-                      }
+                      /*.action{*/
+                          /*color: #fff;*/
+                          /*background: rgba(102, 102, 102, 0.31);*/
+                          /*.iconfont{*/
+                              /*color: #fff;*/
+                          /*}*/
+                          /*a{*/
+                              /*color: #fff;*/
+                          /*}*/
+                      /*}*/
                   }
                   .nav_list:last-child{
                       border: none;

@@ -5,9 +5,15 @@ import $ from 'jquery'
 import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
+import VueResource from 'vue-resource'
 
+Vue.use(Mint)
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
+Vue.use(VueResource)
+
 
 /* eslint-disable no-new */
 new Vue({

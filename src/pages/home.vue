@@ -13,7 +13,6 @@
   import _header from '../components/common_header.vue'
   import _sideMenu from '../components/common_sideMenu.vue'
   import _returnTop from '../components/common_returnTop.vue'
-
   import _tabIndex from '../components/tab_index.vue'
   import _tabDomestic from '../components/tab_domestic.vue'
   import _tabJapanKorea from '../components/tab_JapanKorea.vue'

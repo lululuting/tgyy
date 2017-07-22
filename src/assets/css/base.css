@@ -9,7 +9,10 @@ body, div, p, span, nav, header, main, footer, i, em, strong, label, th, td, dl,
 	outline: 0;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
-
+body{
+  max-width: 750px;
+  margin:0 auto;
+}
 
 table {
     border-collapse: collapse;

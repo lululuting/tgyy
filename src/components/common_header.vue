@@ -6,31 +6,14 @@
           <i class="iconfont icon-sort"></i>
         </div>
 
-        <div class="user_box ellipsis  waves-effect waver-light">
+        <router-link to="/userCenter" class="user_box ellipsis  waves-effect waver-light">
           <img src="../assets/images/user_pic.png" class="user_pic" alt="">
           <span class="user_name">赵日天</span>
-        </div>
-
+        </router-link>
       </div>
 
       <div class="right_box">
-        <ul>
-          <li class="waves-effect waves-circle">
-            <i class="iconfont icon-discover"></i>
-          </li>
-
-          <li class="waves-effect waves-circle">
-            <i class="iconfont icon-game"></i>
-          </li>
-
-          <li class="waves-effect waves-circle">
-            <i class="iconfont icon-down"></i>
-          </li>
-
-          <li class="waves-effect waves-circle">
-            <i class="iconfont icon-search"></i>
-          </li>
-        </ul>
+        <router-link to="/search" class="search_btn"> <i class="iconfont icon-search"></i></router-link>
       </div>
     </div>
     <ul class="top_nav">
@@ -77,7 +60,6 @@
         $('.side_menu .menu_box').show().removeClass('slideOutLeft').addClass('slideInLeft');
       },
 
-
     }
   }
 </script>
@@ -104,9 +86,11 @@
                 }
 
                 .user_box{
+                  display: block;
                     float: left;
                     text-align: center;
                     width: 75%;
+                    color:#fff;
 
                     .user_pic{
                         width: .72rem;
@@ -123,14 +107,24 @@
 
             .right_box {
                 width: 50%;
+                box-sizing: border-box;
+                padding: 0 .2rem;
                 float: left;
                 overflow: hidden;
 
-                ul>li {
-                    height: 1rem;
-                    width: 25%;
-                    float: left;
-                    text-align: center;
+                .search_btn{
+                  height: .5rem;
+                  line-height: .5rem;
+                  display: block;
+                  margin: .25rem 0;
+                  text-align: right;
+                  border-radius: .4rem;
+                  background: rgba(255, 255, 255, 0.5);
+
+                  .iconfont{
+                    font-size: .4rem;
+                    margin-right: .1rem;
+                  }
                 }
 
             }
