@@ -1,14 +1,13 @@
 <template lang="html">
   <div class="bg_box">
-    <swiper :options="swiperOption"  ref="mySwiper">
-      <!-- 这部分放你要渲染的那些内容 -->
-      <swiper-slide v-for="item in banner" class="waves-effect waves-light">
-        <img  :src="item.src" alt="">
-      </swiper-slide>
-      <!-- 这是轮播的小圆点 -->
-      <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
-    </swiper>
 
+    <div class="banner_box">
+      <mt-swipe ref="swipe" :auto="6000">
+        <mt-swipe-item class="waves-effect waves-light" v-for="item in banner">
+          <img  :src="item.pic" alt="" />
+        </mt-swipe-item>
+      </mt-swipe>
+    </div>
 
     <ul class="classify_nav">
       <li class="waves-effect waver-button">
@@ -36,55 +35,19 @@
     </div>
 
     <ul class="list_box">
-      <router-link to="/particulars" class="item waves-effect  waves-light">
-        <img src="../assets/images/banner_01.jpg" alt="">
+
+      <router-link  to="/particulars" class="item waves-effect  waves-light" v-for="item in list">
+        <img :src="item.pic" alt="">
 
         <div class="info">
-          <div class="title">啪啪啪大合集，让你一次爽个够！</div>
+          <div class="title">{{item.title}}</div>
 
           <div class="up_name">
-            <span>隔壁老马</span>
-            <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
+            <span>{{item.author}}</span>
+            <span class="look_num"><i class="iconfont icon-yanjing"></i>{{item.play}}</span>
           </div>
         </div>
       </router-link>
-
-      <li class="item waves-effect  waves-light">
-        <img src="../assets/images/banner_01.jpg" alt="">
-
-        <div class="info">
-          <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
-          <div class="up_name">
-            <span>隔壁老马</span>
-            <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-          </div>
-        </div>
-      </li>
-      <li class="item waves-effect  waves-light">
-        <img src="../assets/images/banner_01.jpg" alt="">
-
-        <div class="info">
-          <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
-          <div class="up_name">
-            <span>隔壁老马</span>
-            <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-          </div>
-        </div>
-      </li>
-      <li class="item waves-effect  waves-light">
-        <img src="../assets/images/banner_01.jpg" alt="">
-
-        <div class="info">
-          <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
-          <div class="up_name">
-            <span>隔壁老马</span>
-            <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-          </div>
-        </div>
-      </li>
     </ul>
   </div>
 
@@ -266,57 +229,55 @@
   </div>
 </template>
 <script>
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
   export default {
     components: {
-      swiper,
-      swiperSlide
+
     },
     data() {
       return {
         // 模拟banner图片数据
-        banner:[
-            {src:require('../assets/images/banner_01.jpg')},
-            {src:require('../assets/images/banner_02.jpg')},
-            {src:require('../assets/images/banner_03.jpg')},
-            {src:require('../assets/images/banner_04.jpg')},
-            {src:require('../assets/images/banner_05.jpg')}
-        ],
-        swiperOption: {
-          //是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
-          notNextTick: true,
-          pagination: '.swiper-pagination',
-          slidesPerView: 'auto',
-          centeredSlides: true,
-          loop : true,
-          paginationClickable: true,
-          autoplay : 5000,
-          autoplayDisableOnInteraction : false,
-          onSlideChangeEnd: swiper => {
-            //这个位置放swiper的回调方法
-            this.page = swiper.realIndex+1;
-            this.index = swiper.realIndex;
-          }
-        }
+        banner:[],
+        list:[],
       }
     },
-    //定义这个sweiper对象
-    computed: {
-      swiper() {
-        return this.$refs.mySwiper.swiper;
-      }
+    created () {
+      let $this =this;
+      let banner_url = 'http://api.bilibili.com/x/web-show/res/loc?jsonp=jsonp&pf=0&id=23&_=1482805801599';//轮播数据
+
+      $this.$http.jsonp(banner_url).then(function(res){
+        $this.banner=res.data.data;
+      },function(res) {
+        alert(res.status);
+      });
+
+
+      let list_url = 'https://api.imjad.cn/bilibili/?get=rank&content=23&duration=7' //国产
+      this.$http.get(list_url).then(function(res){
+        $this.list=res.data.rank.list.slice(0,10);
+
+        console.log($this.list)
+      },function(res) {
+        alert(res.status);
+      });
     },
-    mounted () {
-      //这边就可以使用swiper这个对象去使用swiper官网中的那些方法
-      this.swiper.slideTo(0, 0, false);
-    }
+
 
   }
 </script>
 <style lang="scss">
-    .swiper-pagination-bullet{
+
+    .mint-swipe-indicator{
         width: .1rem;
         height: .1rem;
+    }
+    .mint-swipe-indicator{
+      opacity: .5;
+      background: rgba(0, 0, 0, 0.41);
+    }
+
+    .banner_box{
+      overflow: hidden;
+      height: 3.5rem;
     }
     .bg_box{
         background: #fafafa;

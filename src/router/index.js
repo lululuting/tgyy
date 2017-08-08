@@ -4,6 +4,9 @@ import home from '@/pages/home'
 import particulars from '@/pages/particulars'
 import search from '@/pages/search'
 import userCenter from '@/pages/user_center'
+import login from '@/pages/login'
+import register from '@/pages/register'
+
 
 
 
@@ -30,6 +33,15 @@ export default new Router({
       path: '/userCenter',
       component: userCenter // 注册userCenter组件
     },
+    {
+      path: '/login',
+      component: login // 注册login组件
+    },
+    {
+      path: '/register',
+      component: register // 注册register组件
+    },
+
 
   ]
 })

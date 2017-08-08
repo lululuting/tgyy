@@ -1,79 +1,71 @@
 <template lang="html">
-  <div @click="closeSideMenu($event)" class="side_menu animated" style="display:none;">
-      <div class="menu_box animated">
-          <!--用户资料-->
-          <div class="user_box waves-effect  waves-light">
-              <div class="top_box">
-                  <div class="user_pic">
-                      <router-link to="/userCenter">
-                          <img src="../assets/images/user_pic.png" alt="">
-                      </router-link >
-                  </div>
-
-                  <div class="action_box">
-                      <i @click="themeSwitch()"  :class="{'icon-yueliang':themeColor}"  class="iconfont icon-taiyang waves-effect waver-button"> </i>
-                  </div>
-              </div>
-
-              <div class="bottom_box">
-                  <div>赵日天<span class="lv_box">LV<i>1</i></span></div>
-
-                  <div class="level_box">
-                    <i class="level">新手上路</i>
-                  </div>
-
-                  <div class="property_box">
-                      <span>油箱：0.00 L</span>
-                  </div>
-              </div>
-
+  <mt-popup v-model="sideMenu" position="left" pop-transition="popup-fade">
+    <div class="menu_box">
+      <!--用户资料-->
+      <div class="user_box waves-effect  waves-light">
+        <div class="top_box">
+          <div class="user_pic">
+            <router-link to="/login">
+              <img src="../assets/images/user_pic.png" alt="">
+            </router-link >
           </div>
 
-          <!--option选项-->
-          <div class="nav_con">
-              <ul class="nav_list">
-                  <li class="waves-effect waves-button"><a href=""><i class="iconfont icon-home"></i>首页</a></li>
-                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-favor"></i>我的收藏</a></li>
-                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-skin"></i>主题</a></li>
-                  <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-settings"></i>设置</a></li>
-              </ul>
+          <div class="action_box">
+            <i @click="themeSwitch()"  :class="{'icon-yueliang':themeColor}"  class="iconfont icon-taiyang waves-effect waver-button"> </i>
           </div>
+        </div>
+
+        <div class="bottom_box">
+          <div>赵日天<span class="lv_box">LV<i>1</i></span></div>
+
+          <div class="level_box">
+            <i class="level">新手上路</i>
+          </div>
+
+          <div class="property_box">
+            <span>油箱：0.00 L</span>
+          </div>
+        </div>
+
       </div>
-  </div>
+
+      <!--option选项-->
+      <div class="nav_con">
+        <ul class="nav_list">
+          <li class="waves-effect waves-button"><a href=""><i class="iconfont icon-home"></i>首页</a></li>
+          <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-favor"></i>我的收藏</a></li>
+          <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-skin"></i>主题</a></li>
+          <li class="waves-effect waver-button"><a href=""><i class="iconfont icon-settings"></i>设置</a></li>
+        </ul>
+      </div>
+    </div>
+  </mt-popup>
+
 </template>
 <script>
     export default{
         data(){
             return{
+                sideMenu:false,
                 themeColor:false //切换主题样式变量
             }
         },
 
         methods: {
-            // 关闭侧边导航
-            closeSideMenu: function(e){
-                var side_menu = $('.side_menu');
-                var con = $('.menu_box');// 设置目标区域
-
-                function fn(box) {
-                    side_menu.removeClass('fadeIn').addClass('fadeOut');
-                    box.removeClass('slideInLeft').addClass('slideOutLeft');
-
-                    setTimeout(function () {
-                        side_menu.hide();
-                    },500)
-                }
-
-                if(!con.is(e.target) && con.has(e.target).length === 0)fn(con);
-            },
             // 主题样式切换
             themeSwitch: function () {
                 this.themeColor=!this.themeColor
             }
         },
         mounted (){
+            let $this = this;
             let $height = $(window).height() - $('.user_box').height();
             $('.nav_con').css('height',$height/100+'rem');
+
+
+            $('.left_box .left_nav').click(function () {
+              $this.sideMenu=true;
+            });
         }
     }
 
@@ -81,28 +73,13 @@
 <style lang="scss" scoped>
   $themeColor: #8fdac6;/*主题颜色*/
 
-      .side_menu{
-          width: 100%;
-          height: 100%;
-          overflow-y: scroll;
-          position: fixed;
-          left: 0;
-          top:0;
-          z-index: 999;
-          background: rgba(0, 0, 0, 0.3);
-
-          animation-duration: .5s;    /*动画持续时间*/
-          animation-delay: 0s;    /*动画延迟时间*/
-
-          .slideOutLeft{
-              animation-duration: 1s !important;    /*重写动画持续时间*/
-          }
+  .mint-popup-left{
+    height: 100%;
+    width: 70%;
+  }
           .menu_box{
-              width: 70%;
               height: 100%;
               background: #fff;
-              animation-duration: .5s;    /*动画持续时间*/
-              animation-delay: 0s;    /*动画延迟时间*/
 
               .user_box{
                   width: 100%;
@@ -232,8 +209,5 @@
              }
 
           }
-
-      }
-
 
 </style>

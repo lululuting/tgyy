@@ -2,7 +2,7 @@
   <div class="header_box" >
     <div class="header_top">
       <div class="left_box ">
-        <div class="left_nav waves-effect waver-button" @click="openSideMenu()">
+        <div class="left_nav waves-effect waver-button" >
           <i class="iconfont icon-sort"></i>
         </div>
 
@@ -54,10 +54,6 @@
         this.tabName = tabName;
         this.$emit('tabName',this.tabName);
 
-      },
-      openSideMenu: function(){
-        $('.side_menu').show().removeClass('fadeOut').addClass('fadeIn');
-        $('.side_menu .menu_box').show().removeClass('slideOutLeft').addClass('slideInLeft');
       },
 
     }
@@ -180,6 +176,7 @@
       .nav_fixed{
           position: fixed;
           top:0;
+          left:0;
           z-index: 888;
 
       }

@@ -15,4 +15,7 @@ export default {
 @import "assets/font/iconfont.css";
 @import "../static/animate/animate.min.css";
 @import "../static/waves/waves.min.css";
+@import "../static/cropper/cropper.min.css";
+@import "../static/cropper/cropper.min.css";
+@import "../static/flexText/flexText.css";
 </style>

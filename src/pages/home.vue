@@ -35,9 +35,20 @@
       }
     },
     mounted: function () {// 相当于$(function(){...code..})
-      var l_top=0;
+
+      if(window.localStorage.length>0){
+        console.log(window.localStorage);
+      }else{
+        console.log('第一次来');
+      }
+
+
+
+
+      // 头部滚动显隐
+      let l_top=0;
       $(window).scroll(function(){
-        var n_top = $(window).scrollTop();
+        let n_top = $(window).scrollTop();
 
         if(n_top>100){
           $('.top_nav').addClass('nav_fixed')

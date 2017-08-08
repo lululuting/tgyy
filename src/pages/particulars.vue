@@ -32,7 +32,10 @@
 
             <!--进度条滑块-->
             <div class="control_slider">
-              <p class="timeline"><span style=""></span></p>
+              <p class="timeline">
+                <span class="progress_line"></span>
+                <i class="loading_line"></i>
+              </p>
             </div>
 
             <!--右边 弹幕 全屏 的操作-->
@@ -66,7 +69,14 @@
           </div>
 
           <div class="video_box">
-              <video @click="showPlayer()"   @canplaythrough="videoLength()" id="video" width=100% height=100%  src="https://media.w3.org/2010/05/sintel/trailer.mp4"  type="video/mp4"></video>
+              <!--loading-->
+              <div v-show="loading" class="loading_amin">
+                  <div class="cube c1"></div>
+                  <div class="cube c2"></div>
+                  <div class="cube c4"></div>
+                  <div class="cube c3"></div>
+              </div>
+              <video @click="showPlayer()" @waiting="videoWaiting()"  @canplaythrough="videoLength()" id="video" width=100% height=100%  src="../../static/video/lovelove.mp4"  type="video/mp4"></video>
           </div>
 
       </div>
@@ -275,33 +285,53 @@
   </div>
 </template>
 <script>
-
-
   export default {
       data(){
           return{
               topShowHide:true, // 头部显隐
               video : document.getElementById('video'), // 目标视频
               ifShow:false,// 控件显藏
+              loading:false,// 缓冲状态
+              loadingTime:0,// 缓冲进度
+              loadingProgress:false,// 缓冲进度条定时器
               videoTime:'',// 视频时长
               videoCurrentTime:'00:00',// 播放起初时间
               state:false,// 播放开关状态
-              getCurrentTime:false,// 进度条定时器
+              getCurrentTime:false,// 播放进度条定时器
               videoFull:false,// 全屏
               towSecsHide:'',// 2秒后隐藏
-              openInfo:false,
-              topBg:false,
+              openInfo:false,// 视频介绍
+              topBg:false,// 头部背景
           }
       },
       methods:{
-          // 播放封面 只出现一次
+          // 播放封面 只出现一次 点了就开始缓冲视频 直到结束或者退出页面
           loadPlayer:function () {
+              let $this = this;
               if (video.paused) {
                   video.play();
                   $('.load_layer').hide();
                   this.state=true;
                   this.topShowHide=false;
                   this.dsq(); //播放开启定时器
+
+                  let timeing = 0;
+
+                  $this.loadingProgress = setInterval(function () {
+                          let time = parseInt(video.duration);
+                          timeing++;
+
+                          $this.loadingTime = Math.floor(video.duration/video.buffered.end(0)*100);
+
+                          $('.loading_line').css('width',$this.loadingTime+'%');
+
+                          console.log(1);
+                          if (timeing==time || video.ended)clearLoading();
+                      },1000);
+
+                     function clearLoading() {
+                       clearInterval($this.loadingProgress)
+                     }
               }
           },
           // 播放控件显隐
@@ -315,10 +345,11 @@
                   return [parseInt(second / 60 ), second% 60].join(":").replace(/\b(\d)\b/g, "0$1");
               }
               this.videoTime=formatTime(Math.floor(video.duration));
+
           },
           // 播放与暂停
           player: function () {
-              var $this = this;
+              let $this = this;
               if (video.paused){
                   clearTimeout($this.getCurrentTime); //播放清除定时器 预防万一
                   this.state=true;
@@ -336,42 +367,63 @@
                   video.pause();
               }
           },
+          // 要缓冲时
+          videoWaiting:function(){
+              let $this = this;
+              if (video.paused){
+                this.loading=true;
+              }
+              // 缓冲好了隐藏动画 code...
+          },
           // 重播
           rePlay:function () {
+
               video.play();
               this.ifShow=false;
               this.topShowHide =this.ifShow;
 
               $('.video_end').hide();
 
-              $('.timeline').children().css('width','0');
+              $('.timeline').children('.progress_line').css('width','0');
               clearTimeout(this.getCurrentTime); //暂停清除定时器 预防万一
+
               this.dsq();// 播放开启定时器
+
           },
           // 播放时间与进度条
           dsq:function () {
-              var $this=this;
+              let $this = this;
               this.getCurrentTime = setInterval(function () {
 
-                  function formatTime(second) {return [parseInt(second / 60 ), second% 60].join(":").replace(/\b(\d)\b/g, "0$1");}
+                  // 格式化时间戳
+                  function formatTime(second) {
+                      return [parseInt(second / 60 ), second% 60].join(":").replace(/\b(\d)\b/g, "0$1");
+                  }
+
+                  // 播放进度
                   $this.videoCurrentTime=formatTime(Math.floor(video.currentTime));
 
                   let box = $('.timeline');
                   let thisWidth = box.children().width();
                   let $width =box.width()/video.duration;
-                  box.children().css('width',(thisWidth+$width)/100 +'rem');
+
+                  // 赋值进度条
+                  box.children('.progress_line').css('width',(thisWidth+$width)/100 +'rem');
+
 
                   if(video.ended){
-                    $(document).off();
+                      $(document).off();
 
                       clearTimeout($this.getCurrentTime);
+
                       $this.ifShow=false;
-                      $this.topShowHide =true;
-                      $this.videoFull=false;
+                          $this.topShowHide =true;
+                          $this.videoFull=false;
 
-                      $('.video_end').css('display','flex');
+                          $('.video_end').css('display','flex');
 
-                  }
+                      }
+
               },1000);
           },
           // 全屏与退出全屏
@@ -390,7 +442,6 @@
 
           }
         },
-
           // 点赞
           clickPraise:function () {
               // ajax code...
@@ -406,7 +457,7 @@
           // 分享
           clickShare:function () {
               // ajax code...
-
+               alert("分享");
           },
           // 下载
           clickDownload:function () {
@@ -418,12 +469,12 @@
           let $this=this;
 
           $('.player_box').on('touchend touchmove','.timeline',function(e){
-            var x = e.originalEvent.changedTouches[0].clientX-this.offsetLeft;
-            var X = x < 0 ? 0 : x ;
-            var W = $(this).width();
-            var place = X > W ? W : X;
+            let x = e.originalEvent.changedTouches[0].clientX-this.offsetLeft;
+            let X = x < 0 ? 0 : x ;
+            let W = $(this).width();
+            let place = X > W ? W : X;
             video.currentTime = (place/W).toFixed(2)*video.duration;
-            $(this).children().css({width:(place/W).toFixed(2)*100+"%"});
+            $(this).children('.progress_line').css({width:(place/W).toFixed(2)*100+"%"});
           });
 
           $(document).on('click touchend','.video_box,.control_bar,.top_box',function() {
@@ -453,7 +504,7 @@
   //          $this.state=false;
   //          video.pause();
               let $width = $('.timeline').width()/video.duration*video.currentTime;
-              $('.timeline').children().css('width',$width/100+'rem');
+              $('.timeline').children('.progress_line').css('width',$width/100+'rem');
           });
 
 
@@ -567,9 +618,109 @@
       padding: .1rem .2rem;
       border-radius: .1rem;
     }
+
+    $prim: #fff;
     .video_box{
+      position: relative;
       width: 100%;
       height: 100%;
+
+      .loading_amin{
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left:0;
+        right:0;
+        margin: auto;
+        width: .75rem;
+        height:.75rem;
+        z-index: 999;
+        -webkit-transform: rotateZ(45deg);
+        transform: rotateZ(45deg);
+
+        .cube {
+          position: relative;
+          -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+        }
+
+        .cube {
+          float: left;
+          width: 50%;
+          height: 50%;
+          position: relative;
+          -webkit-transform: scale(1.1);
+          -ms-transform: scale(1.1);
+          transform: scale(1.1);
+        }
+
+        .cube:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: $prim;
+          -webkit-animation: foldthecube 2.4s infinite linear both;
+          animation: foldthecube 2.4s infinite linear both;
+          -webkit-transform-origin: 100% 100%;
+          -ms-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+        }
+
+        .c2 {
+          -webkit-transform: scale(1.1) rotateZ(90deg);
+          transform: scale(1.1) rotateZ(90deg);
+        }
+
+        .c3 {
+          -webkit-transform: scale(1.1) rotateZ(180deg);
+          transform: scale(1.1) rotateZ(180deg);
+        }
+
+        .c4 {
+          -webkit-transform: scale(1.1) rotateZ(270deg);
+          transform: scale(1.1) rotateZ(270deg);
+        }
+
+        .c2:before {
+          -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+        }
+
+        .c3:before {
+          -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+        }
+
+        .c4:before {
+          -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+        }
+
+        @keyframes foldthecube {
+          0%, 10% {
+            -webkit-transform: perspective(1.4rem) rotateX(-180deg);
+            transform: perspective(1.4rem) rotateX(-180deg);
+            opacity: 0;
+          }
+
+          25%,
+          75% {
+            -webkit-transform: perspective(1.4rem) rotateX(0deg);
+            transform: perspective(1.4rem) rotateX(0deg);
+            opacity: 1;
+          }
+
+          90%,
+          100% {
+            -webkit-transform: perspective(1.4rem) rotateY(180deg);
+            transform: perspective(1.4rem) rotateY(180deg);
+            opacity: 0;
+          }
+        }
+      }
     }
 
     .control_bar{
@@ -648,7 +799,8 @@
           display: inline-block;
           z-index: 2;
         }
-        .timeline span {
+
+        .timeline .progress_line {
           position: relative;
           width: 0;
           border-radius: .5rem;
@@ -659,7 +811,20 @@
           /*-o-transition: width ease-out 0.3s;*/
           /*transition: width ease-out 0.3s;*/
         }
-        .timeline span:after{
+
+        .timeline .loading_line{
+          position: absolute;
+          top:0;
+          left: 0;
+          width: 0;
+          background-color: rgba(143, 218, 198, 0.25);
+          border-radius: .5rem;
+          height: .05rem;
+          display: block;
+          z-index: -1;
+        }
+
+        .timeline .progress_line:after{
           content: "";
           position: absolute;
           top:-.07rem;
