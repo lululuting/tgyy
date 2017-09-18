@@ -111,7 +111,7 @@
       font-size: .28rem;
       height: .8rem;
       line-height: .8rem;
-      border-bottom: .01rem solid #fafafa;
+
     }
   }
   .if_null{
@@ -120,6 +120,5 @@
     height: .8rem;
     line-height: .8rem;
     color: #666;
-    border-bottom: .01rem solid #fafafa;
   }
 </style>

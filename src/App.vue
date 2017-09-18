@@ -7,7 +7,11 @@
 <script>
 
 export default {
-  name: 'app'
+  mounted (){
+      if (localStorage.getItem("theme")==1){
+          document.getElementsByTagName("body")[0].className='theme_black';
+      }
+  }
 }
 </script>
 <style lang="css">
@@ -15,7 +19,5 @@ export default {
 @import "assets/font/iconfont.css";
 @import "../static/animate/animate.min.css";
 @import "../static/waves/waves.min.css";
-@import "../static/cropper/cropper.min.css";
-@import "../static/cropper/cropper.min.css";
-@import "../static/flexText/flexText.css";
+@import "assets/css/themeColor.css";
 </style>

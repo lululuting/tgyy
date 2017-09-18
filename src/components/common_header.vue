@@ -138,7 +138,6 @@
           box-sizing: border-box;
           color: #fff;
           width: 100%;
-          background-color: #8fdac6;
           font-size: .26rem;
 
 
@@ -178,7 +177,7 @@
           top:0;
           left:0;
           z-index: 888;
-
+          background: #8fdac6;
       }
   }
 </style>

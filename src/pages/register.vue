@@ -22,7 +22,7 @@
         <input class="phone_num" v-model="phoneNumber" type="text" placeholder="请输入手机号">
       </div>
 
-      <button @click='getCode' class="sub_btn">获取验证码</button>
+      <button @click='getCode'  :class="{'btn_opacity':phoneNumber}" class="sub_btn"><label class="btn_text">获取验证码</label></button>
 
       <div class="tips">点击"获取验证码"按钮，即表示同意 <a class="protocol_text" href="">注册协议</a></div>
     </div>
@@ -39,6 +39,7 @@
       </mt-radio>
     </mt-popup>
 
+    <!--检查验证码layer-->
     <mt-popup v-model="msgCode" class="test_code" position="right" pop-transition="popup-fade">
       <div class="top_box">
         <span class="back waves-effect  waves-light" @click="closeCode">
@@ -57,7 +58,37 @@
 
         <span class="resend" @click="resendCode()">{{timerCodeMsg}}</span>
 
-        <button @click="testCode()" class="next_btn">下一步</button>
+        <button @click="testCode()" :class="{'btn_opacity':code}" class="sub_btn"><label class="btn_text">下一步</label></button>
+      </div>
+
+    </mt-popup>
+
+    <!--在资料填写layer-->
+    <mt-popup v-model="setInfo" class="set_user_info" position="right" pop-transition="popup-fade">
+      <div class="top_box">
+        <span class="back waves-effect  waves-light">
+          <i class="iconfont icon-back"></i>
+        </span>
+        <span class="title">设置密码</span>
+      </div>
+
+      <div class="set_info_box">
+        <p class="tips">{{infoTips}}</p>
+
+        <div class="input_box">
+          <span class="tit">密码</span>
+          <input class="pwd_input" placeholder="6-16个字符以内，区分大小写" v-model="password" type="password" maxlength="16">
+        </div>
+        <div class="input_box">
+          <span class="tit">确认密码</span>
+          <input class="com_pwd_input" placeholder="请再次输入" v-model="confirmPass" type="password" maxlength="16">
+        </div>
+        <div class="input_box">
+          <span class="tit">昵称</span>
+          <input class="nickname_input" placeholder="3-30个字符以内" v-model="nickName" type="text">
+        </div>
+
+        <button class="sub_btn" @click="subInfo" style="opacity: 1"><label class="btn_text">完成注册</label></button>
       </div>
 
     </mt-popup>
@@ -68,6 +99,7 @@
 </template>
 <script>
   import { Indicator } from 'mint-ui';
+  import { Toast } from 'mint-ui';
   export default{
     data() {
       return {
@@ -121,6 +153,13 @@
             value: '+61',
           },
         ],
+
+        // 设置资料
+        setInfo:false,
+        password:'',
+        confirmPass:'',
+        nickName:'',
+        infoTips:'设置密码以后，你就可以用手机号登陆挺哥影院咯',
       }
     },
     methods: {
@@ -166,61 +205,103 @@
         if (this.code=='')return;
 
         let $this=this;
-
         Indicator.open('正在检验...');
 
-        //模拟发送验证码到后台对比的返回值
+        //模拟发送验证码到后台对比为‘对’的返回值
         setTimeout(function () {
-          $this.reCodeMsg = false;
-        },2000)
+          Indicator.close();
+          $this.setInfo = true;
+        },2000);
+
+//        //模拟发送验证码到后台对比为‘错’的返回值
+//        setTimeout(function () {
+//          $this.reCodeMsg = false;
+//        },2000)
+
       },
       // 重新发送验证码
       resendCode:function () {
         if (!this.preventMany)return;
         let $this = this;
 
-        // 获取验证码
+        // 获取验证码code。。。
+
         Indicator.open('正在重新发送...');
 
-        // 模拟短信接口 返回值
+        // 模拟短信接口发送成功 返回值
         setTimeout(function () {
-          $this.reResendCodeMsg = true;
+          $this.reResendCodeMsg = false;
         },2000);
       },
+      // 设置资料提交
+      subInfo:function () {
+        let $this = this;
+
+        var pwdTest =/^(\w){6,16}$/;//6到16个字符
+        var nickNameTest = /^[\u4e00-\u9fa5]{2,6}$|^[_a-zA-Z0-9\—]{3,12}$/; //12个字符以内
+
+        if (!pwdTest.test(this.password)){
+          $this.infoTips='密码不符合要求！';
+          $('.pwd_input').addClass('shake').on('webkitAnimationEnd', function () {
+            $('.pwd_input').removeClass('shake');
+          });
+          return false;
+        }else  if (this.password!==this.confirmPass){
+          $this.infoTips='两次密码不一致！';
+          $('.com_pwd_input').addClass('shake').on('webkitAnimationEnd', function () {
+            $('.com_pwd_input').removeClass('shake');
+          });
+          return false;
+        }else if (!nickNameTest.test(this.nickName)){
+          $this.infoTips='昵称有误！';
+
+          $('.nickname_input').addClass('shake').on('webkitAnimationEnd', function () {
+            $('.nickname_input').removeClass('shake');
+          });
+          return false;
+
+        }else {
+          let tips= Toast({
+            message: '操作成功',
+            iconClass: 'icon icon-success'
+          });
+
+
+//          setTimeout(function () {
+//            tips.close();
+//            $this.$router.push('/login');
+//          }, 1000);
+
+        }
+
+
+
+
+
+
+      }
     },
     mounted(){
-      let $this = this;
-      $('.mint-cell').click(function () {
+        let $this = this;
 
-        $this.label = $(this).find('.mint-radio-label').text();
+        //选择国家 获取到当前所选择的国家
+        $('.mint-cell').click(function () {
+          $this.label = $(this).find('.mint-radio-label').text();
 
-        setTimeout(function () {
-          $this.popupCountry = false;
-        },300)
-      })
-    },
-    watch:{
-      phoneNumber (){
-        if (!this.phoneNumber==''){
-          $('.sub_btn').css('background','rgba(143, 218, 198, 1)');
-        }else {
-          $('.sub_btn').css('background',' rgba(143, 218, 198, .5)');
-        }
+          // 等 选中样式动画执行完再关闭
+          setTimeout(function () {
+            $this.popupCountry = false;
+          },300)
+        })
       },
-      // 发生短信 loading
-      reMsg (){
-        if (this.reMsg){
-          Indicator.close();
-          this.reMsg=false;
-        }
-      },
-      code (){
-        if (!this.code =='') {
-          $('.next_btn').css('background', 'rgba(143, 218, 198, 1)');
-        } else {
-          $('.next_btn').css('background', 'rgba(143, 218, 198, .5)');
-        }
-      },
+      watch:{
+        // 发生短信 loading
+        reMsg (){
+          if (this.reMsg){
+            Indicator.close();
+            this.reMsg=false;
+          }
+        },
       // 检验验证码正确性 loading
       reCodeMsg (){
         if(!this.reCodeMsg){
@@ -232,7 +313,6 @@
             $('.code_input').removeClass('shake');
           });
           console.log('模拟验证码检验，默认验证码错误 哈哈哈哈');
-
         }
       },
       // 重新发生验证码
@@ -269,7 +349,7 @@
   .popupCountry{
     display: block;
     width: 80%;
-    height: 60%;
+    height: 40%;
     top:0;
     bottom: 0;
     margin: auto;
@@ -282,7 +362,8 @@
       padding-top: .8rem;
       box-sizing: border-box;
     }
-    .mint-radiolist-title {
+
+  .mint-radiolist-title {
       font-size: .28rem;
       border-bottom: .01rem solid #8fdac6;
       height: .8rem;
@@ -318,9 +399,6 @@
       width: .16rem;
       height: .16rem;
     }
-    .mint-cell:last-child{
-      background: none;
-    }
   }
   .mint-indicator .mint-indicator-wrapper{
     padding: .4rem .5rem !important;
@@ -340,9 +418,16 @@
     font-size: .28rem !important;
     margin-top: .2rem !important;
   }
-
+  .mint-toast.is-placemiddle{
+    z-index: 99999 !important;
+  }
 </style>
 <style lang="scss" scoped>
+
+  .theme_black .top_box{
+    background: #333 ;
+  }
+
   .top_box{
     position: fixed;
     top: 0;
@@ -426,17 +511,6 @@
        }
 
     }
-    .sub_btn{
-      width: 100%;
-      margin-top: .4rem;
-      font-size: .28rem;
-      display: block;
-      text-align: center;
-      height: .8rem;
-      border-radius: .1rem;
-      color: #fff;
-      background: rgba(143, 218, 198, 0.5);
-    }
     .tips_top{
       font-size: .28rem;
       color: #999;
@@ -460,14 +534,16 @@
     z-index: 9099;
 
     .test_box {
-      padding-top: 1rem;
+      margin-top: 1rem;
       overflow: hidden;
+      padding: .3rem;
       text-align: center;
 
       .tips {
         font-size: .28rem;
         color: #666;
         margin: .2rem 0;
+        text-align: left;
       }
       .number{
         padding: .2rem 0;
@@ -481,7 +557,6 @@
         text-align: center;
         font-size: .28rem;
         margin: .2rem 0;
-        text-align: center;
         border-radius: .1rem;
       }
 
@@ -494,21 +569,11 @@
         display: inline-block;
         margin: .2rem 0;
       }
-      .next_btn{
-        width: 80%;
-        height: .8rem;
-        line-height: .8rem;
-        color: #fff;
-        font-size: .28rem;
-        text-align: center;
-        border-radius: .1rem;
-        margin: .2rem 0;
-        background: rgba(143, 218, 198, 0.5);
-      }
-
     }
   }
-
+  .btn_opacity{
+    opacity: 1 !important;
+  }
   .shake{
     animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
     transform: translate3d(0, 0, 0);
@@ -528,6 +593,72 @@
     40%, 60% {
       transform: translate3d(4px, 0, 0);
     }
+  }
+
+
+  .set_user_info{
+    width:100%;
+    height:100%;
+    z-index:2017;
+
+    .set_info_box{
+      padding: .3rem;
+      margin: 1rem auto 0;
+
+      .tips {
+        font-size: .28rem;
+        color: #666;
+      }
+
+      .input_box{
+        height: 1rem;
+        line-height: 1rem;
+        margin-top: .4rem;
+        position: relative;
+        overflow: hidden;
+        border-bottom: .01rem solid #ccc;
+
+        .tit{
+          width:30%;
+          font-size: .28rem;
+          float: left;
+        }
+
+        input{
+          width: 70%;
+          float: left;
+          height: 100%;
+          font-size: .28rem;
+          box-sizing: border-box;
+          background: transparent;
+        }
+      }
+    }
+  }
+  .sub_btn{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: .8rem;
+    line-height: .8rem;
+    color: #fff;
+    font-size: .28rem;
+    text-align: center;
+    position: relative;
+    border-radius: .1rem;
+    margin: .2rem 0;
+    background: #8fdac6 ;
+    opacity: .5;
+  }
+  .btn_text{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: .1rem;
+  }
+  .btn_text:active{
+    background-color: rgba(0, 0, 0, 0.31);
   }
 </style>
 

@@ -37,7 +37,9 @@
     <ul class="list_box">
 
       <router-link  to="/particulars" class="item waves-effect  waves-light" v-for="item in list">
-        <img :src="item.pic" alt="">
+        <div class="pic_box">
+          <img v-lazy="item.pic" :alt="item.title">
+        </div>
 
         <div class="info">
           <div class="title">{{item.title}}</div>
@@ -45,6 +47,7 @@
           <div class="up_name">
             <span>{{item.author}}</span>
             <span class="look_num"><i class="iconfont icon-yanjing"></i>{{item.play}}</span>
+            <!--<span v-else class="look_num"><i class="iconfont icon-yanjing"></i>{{item.play}}</span>-->
           </div>
         </div>
       </router-link>
@@ -59,11 +62,12 @@
 
       <ul class="list_box">
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -71,11 +75,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -83,11 +88,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -95,11 +101,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -117,11 +124,12 @@
 
       <ul class="list_box">
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -129,11 +137,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -141,11 +150,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -153,11 +163,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -175,11 +186,12 @@
 
       <ul class="list_box">
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -187,11 +199,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -199,11 +212,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -211,11 +225,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -242,26 +257,33 @@
     },
     created () {
       let $this =this;
-      let banner_url = 'http://api.bilibili.com/x/web-show/res/loc?jsonp=jsonp&pf=0&id=23&_=1482805801599';//轮播数据
 
-      $this.$http.jsonp(banner_url).then(function(res){
-        $this.banner=res.data.data;
-      },function(res) {
-        alert(res.status);
-      });
+//      let banner_url = 'http://www.bilibili.com/index/recommend.json';//轮播数据
+//
+//      this.$axios.get(banner_url).then(function(res){
+//        $this.banner=res.data.data;
+//      },function(res) {
+//        alert(res.status);
+//      });
 
 
       let list_url = 'https://api.imjad.cn/bilibili/?get=rank&content=23&duration=7' //国产
-      this.$http.get(list_url).then(function(res){
+      this.$axios.get(list_url).then(function(res){
         $this.list=res.data.rank.list.slice(0,10);
 
-        console.log($this.list)
+        //播放量过滤
+        for(let i=0;i<$this.list.length;i++){
+          if($this.list[i].play>10000){
+            let num = $this.list[i].play.toString();
+            $this.list[i].play = num.slice(0,-4)+'w';
+          }
+        }
+
       },function(res) {
         alert(res.status);
       });
+
     },
-
-
   }
 </script>
 <style lang="scss">
@@ -346,6 +368,37 @@
                 margin-bottom: .2rem;
                 padding: 0 .1rem;
 
+                .pic_box{
+                    width: 100%;
+                    height: 2rem;
+                    position: relative;
+                    overflow: hidden;
+                    max-height: 2rem;
+                    background: #f2f2f2;
+
+                    img{
+                      width: 100%;
+                      max-height: 2rem;
+                      position: absolute;
+                      top:0;
+                      bottom: 0;
+                      left: 0;
+                      right: 0;
+                      margin: auto;
+                    }
+
+                    img[lazy=loading] {
+                      height: 1rem;
+                      width: 1rem;
+                      position: absolute;
+                      top:0;
+                      bottom: 0;
+                      left: 0;
+                      right: 0;
+                      margin: auto;
+                    }
+                }
+
                 .info{
                     padding: .1rem;
                     background: #fff;
@@ -382,4 +435,6 @@
 
 
     }
+
+
 </style>

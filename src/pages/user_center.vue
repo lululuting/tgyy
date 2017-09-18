@@ -313,6 +313,8 @@
   }
 </style>
 <style lang="scss" scoped>
+  @import "../../static/cropper/cropper.min.css";
+  @import "../../static/flexText/flexText.css";
 
   .top_box {
     position: fixed;
@@ -324,7 +326,7 @@
     overflow: hidden;
     padding: 0 0;
     z-index: 999;
-    background-color: transparent;
+    background-color: transparent !important;
     font-size: .32rem;
     transition: .5s all;
     color: #fff;
@@ -482,7 +484,7 @@
       display: inline-block;
       overflow: hidden;
       border-radius: 50%;
-      border: .02rem solid #fff;
+      border: .04rem solid #fff;
       margin: .5rem;
       position: relative;
     }

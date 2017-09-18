@@ -42,10 +42,12 @@
 
   }
 </script>
-<style lang="scss" scoped>
-  body{
-    background: #8fdac6 !important;
+<style lang="scss" scoped rel="stylesheet/scss">
+
+  .theme_black .top_box{
+    background: #333 ;
   }
+
   .top_box{
     position: fixed;
     top: 0;
@@ -56,7 +58,7 @@
     overflow: hidden;
     padding: 0 0;
     z-index: 1001;
-    background-color: #8fdac6;
+    background: #8fdac6;
     /*background-image:-webkit-linear-gradient(90deg,#8fdac6, #7896da);*/
     /*background-image:linear-gradient(90deg,#8fdac6,#7896da);*/
 
@@ -151,7 +153,8 @@
         color: #8fdac6;
       }
       .login_btn{
-        background: rgba(143, 218, 198, 0.5);
+        background: #8fdac6;
+        opacity: .5;
       }
     }
   }

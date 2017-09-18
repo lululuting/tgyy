@@ -7,14 +7,15 @@ import router from './router'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import VueResource from 'vue-resource'
-
-
+import axios from 'axios'
 
 
 
 Vue.use(Mint)
 Vue.config.productionTip = false
 Vue.use(VueResource)
+Vue.prototype.$axios = axios;
+
 
 
 

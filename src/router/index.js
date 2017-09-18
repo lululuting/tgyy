@@ -6,8 +6,7 @@ import search from '@/pages/search'
 import userCenter from '@/pages/user_center'
 import login from '@/pages/login'
 import register from '@/pages/register'
-
-
+import picture from '@/pages/picture'
 
 
 
@@ -40,6 +39,10 @@ export default new Router({
     {
       path: '/register',
       component: register // 注册register组件
+    },
+    {
+      path: '/picture',
+      component: picture // 注册register组件
     },
 
 

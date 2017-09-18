@@ -18,11 +18,6 @@
   import _tabJapanKorea from '../components/tab_JapanKorea.vue'
   import _tabOccident from '../components/tab_occident.vue'
   import _tabPicture from '../components/tab_picture.vue'
-
-
-
-
-
   export default {
     data(){
       return{
@@ -36,32 +31,21 @@
     },
     mounted: function () {// 相当于$(function(){...code..})
 
-      if(window.localStorage.length>0){
-        console.log(window.localStorage);
-      }else{
-        console.log('第一次来');
-      }
-
-
-
-
       // 头部滚动显隐
       let l_top=0;
       $(window).scroll(function(){
         let n_top = $(window).scrollTop();
-
         if(n_top>100){
-          $('.top_nav').addClass('nav_fixed')
+          $('.top_nav').addClass('nav_fixed');
           $('.main').addClass('mt100');
 
           $('.return_top').show();
         }else{
-          $('.top_nav').removeClass('nav_fixed')
+          $('.top_nav').removeClass('nav_fixed');
           $('.main').removeClass('mt100');
 
           $('.return_top').hide();
         }
-
         l_top=n_top;
       });
     },

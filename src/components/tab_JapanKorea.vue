@@ -8,11 +8,12 @@
 
       <ul class="list_box">
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -20,11 +21,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -32,11 +34,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
@@ -44,11 +47,12 @@
           </div>
         </li>
         <li class="item waves-effect  waves-light">
-          <img src="../assets/images/banner_01.jpg" alt="">
+          <div class="pic_box">
+            <img src="../assets/images/banner_01.jpg" alt="">
+          </div>
 
           <div class="info">
             <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-
             <div class="up_name">
               <span>隔壁老马</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
