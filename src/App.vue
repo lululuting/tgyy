@@ -17,7 +17,7 @@ export default {
 <style lang="css">
 @import "assets/css/base.css";
 @import "assets/font/iconfont.css";
-@import "../static/animate/animate.min.css";
-@import "../static/waves/waves.min.css";
+@import "../static/lib/animate/animate.min.css";
+@import "../static/lib/waves/waves.min.css";
 @import "assets/css/themeColor.css";
 </style>

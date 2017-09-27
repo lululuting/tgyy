@@ -9,24 +9,24 @@
       </mt-swipe>
     </div>
 
-    <ul class="classify_nav">
-      <li class="waves-effect waver-button">
+    <div class="classify_nav">
+      <router-link to="/ranking" class="nav_option waves-effect waver-button">
         <i class="iconfont icon-rankfill c-ef7222"></i>
         <p class="tit">排行</p>
-      </li>
-      <li class="waves-effect waver-button">
+      </router-link>
+      <router-link to="/music" class="nav_option waves-effect waver-button">
         <i class="iconfont icon-creativefill c-ffbe4a"></i>
         <p class="tit">看点</p>
-      </li>
-      <li class="waves-effect waver-button">
+      </router-link>
+      <router-link to="/ranking" class="nav_option waves-effect waver-button">
         <i class="iconfont icon-gaoqingshexiang c-62c7db"></i>
         <p class="tit">高清</p>
-      </li>
-      <li class="waves-effect waver-button">
+      </router-link>
+      <router-link to="/ranking" class="nav_option waves-effect waver-button">
         <i class="iconfont icon-shoufei c-8fdac6"></i>
         <p class="tit">氪金</p>
-      </li>
-    </ul>
+      </router-link>
+    </div>
 
     <div class="modular_box">
     <div class="title_box waves-effect waver-button">
@@ -34,20 +34,18 @@
       <span class="right">当前<i class="num">123</i>个视频 <i class="iconfont icon-gengduo"></i></span>
     </div>
 
-    <ul class="list_box">
+    <ul class="list_box" >
 
-      <router-link  to="/particulars" class="item waves-effect  waves-light" v-for="item in list">
+      <router-link v-for="item in gc" :to="{name:'particulars',query:{aid:item.aid}}"  class="item waves-effect  waves-light">
         <div class="pic_box">
           <img v-lazy="item.pic" :alt="item.title">
         </div>
-
         <div class="info">
           <div class="title">{{item.title}}</div>
 
           <div class="up_name">
-            <span>{{item.author}}</span>
-            <span class="look_num"><i class="iconfont icon-yanjing"></i>{{item.play}}</span>
-            <!--<span v-else class="look_num"><i class="iconfont icon-yanjing"></i>{{item.play}}</span>-->
+            <span class="up">{{item.author}}</span>
+            <span class="look_num"><i class="iconfont icon-yanjing"></i>{{formatPlayNum(item.play)}}</span>
           </div>
         </div>
       </router-link>
@@ -61,58 +59,20 @@
       </div>
 
       <ul class="list_box">
-        <li class="item waves-effect  waves-light">
+        <router-link  :to="{name:'particulars',query:{aid:item.aid}}" class="item waves-effect  waves-light" v-for="item in jp">
           <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
+            <img v-lazy="item.pic" :alt="item.title">
           </div>
 
           <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
+            <div class="title">{{item.title}}</div>
 
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
             <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
+              <span class="up">{{item.author}}</span>
+              <span class="look_num"><i class="iconfont icon-yanjing"></i>{{formatPlayNum(item.play)}}</span>
             </div>
           </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
-
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
-
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
+        </router-link>
       </ul>
     </div>
 
@@ -123,58 +83,20 @@
       </div>
 
       <ul class="list_box">
-        <li class="item waves-effect  waves-light">
+        <router-link  :to="{name:'particulars',query:{aid:item.aid}}" class="item waves-effect  waves-light" v-for="item in om">
           <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
+            <img v-lazy="item.pic" :alt="item.title">
           </div>
 
           <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
+            <div class="title">{{item.title}}</div>
 
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
             <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
+              <span class="up">{{item.author}}</span>
+              <span class="look_num"><i class="iconfont icon-yanjing"></i>{{formatPlayNum(item.play)}}</span>
             </div>
           </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
-
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
-
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
+        </router-link>
       </ul>
     </div>
 
@@ -185,58 +107,20 @@
       </div>
 
       <ul class="list_box">
-        <li class="item waves-effect  waves-light">
+        <router-link  :to="{name:'particulars',query:{aid:item.aid}}" class="item waves-effect  waves-light" v-for="item in gc">
           <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
+            <img v-lazy="item.pic" :alt="item.title">
           </div>
 
           <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
+            <div class="title">{{item.title}}</div>
 
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
             <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
+              <span class="up">{{item.author}}</span>
+              <span class="look_num"><i class="iconfont icon-yanjing"></i>{{formatPlayNum(item.play)}}</span>
             </div>
           </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
-
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
-        <li class="item waves-effect  waves-light">
-          <div class="pic_box">
-            <img src="../assets/images/banner_01.jpg" alt="">
-          </div>
-
-          <div class="info">
-            <div class="title">啪啪啪大合集，让你一次爽个够！</div>
-            <div class="up_name">
-              <span>隔壁老马</span>
-              <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
-            </div>
-          </div>
-        </li>
+        </router-link>
       </ul>
     </div>
 
@@ -245,42 +129,48 @@
 </template>
 <script>
   export default {
-    components: {
-
-    },
     data() {
       return {
         // 模拟banner图片数据
         banner:[],
-        list:[],
+        gc:[],
+        jp:[],
+        om:[],
+        tp:[],
       }
     },
     created () {
       let $this =this;
 
-//      let banner_url = 'http://www.bilibili.com/index/recommend.json';//轮播数据
-//
-//      this.$axios.get(banner_url).then(function(res){
-//        $this.banner=res.data.data;
-//      },function(res) {
-//        alert(res.status);
-//      });
+      let banner_url = 'http://api.bilibili.com/x/web-show/res/loc?jsonp=jsonp&pf=0&id=23&_=1482805801599';//轮播数据
 
+      //按3天内排行高到底 每类截10条
+      let gc_url = 'https://api.imjad.cn/bilibili/?get=rank&content=5&duration=3' //国产 娱乐
+      let jp_url = 'https://api.imjad.cn/bilibili/?get=rank&content=23&duration=3' //日韩 电影
+      let om_url = 'https://api.imjad.cn/bilibili/?get=rank&content=119&duration=3' //欧美 鬼畜
 
-      let list_url = 'https://api.imjad.cn/bilibili/?get=rank&content=23&duration=7' //国产
-      this.$axios.get(list_url).then(function(res){
-        $this.list=res.data.rank.list.slice(0,10);
-
-        //播放量过滤
-        for(let i=0;i<$this.list.length;i++){
-          if($this.list[i].play>10000){
-            let num = $this.list[i].play.toString();
-            $this.list[i].play = num.slice(0,-4)+'w';
-          }
-        }
-
+      this.$http.jsonp(banner_url).then(function(res){
+        $this.banner=res.data.data;
       },function(res) {
-        alert(res.status);
+        console.log(res.status+'轮播图请求失败！');
+      });
+
+      this.$axios.get(gc_url).then(function(res){
+        $this.gc=res.data.rank.list.slice(0,10);
+      },function(res) {
+        console.log(res.status+'国产请求失败！');
+      });
+
+      this.$axios.get(jp_url).then(function(res){
+        $this.jp=res.data.rank.list.slice(0,10);
+      },function(res) {
+        console.log(res.status+'日韩请求失败！');
+      });
+
+      this.$axios.get(om_url).then(function(res){
+        $this.om=res.data.rank.list.slice(0,10);
+      },function(res) {
+        console.log(res.status+'欧美请求失败！');
       });
 
     },
@@ -299,7 +189,19 @@
 
     .banner_box{
       overflow: hidden;
-      height: 3.5rem;
+      position: relative;
+      padding-bottom: 50%;
+
+
+      /*插件布局有问题不适用 需要改写*/
+      .mint-swipe{
+        position: static;
+        .mint-swipe-items-wrap{
+          position: static;
+        }
+      }
+
+
     }
     .bg_box{
         background: #fafafa;
@@ -309,7 +211,7 @@
         background: #fff;
         color:#666;
 
-        li{
+        .nav_option{
             float: left;
             text-align: center;
             width: 25%;
@@ -373,12 +275,10 @@
                     height: 2rem;
                     position: relative;
                     overflow: hidden;
-                    max-height: 2rem;
                     background: #f2f2f2;
 
                     img{
                       width: 100%;
-                      max-height: 2rem;
                       position: absolute;
                       top:0;
                       bottom: 0;
@@ -418,13 +318,33 @@
                     }
 
                     .up_name{
-                        font-size: .26rem;
+                        height: .3rem;
+                        line-height: 3rem;
+                        overflow: hidden;
+                        font-size: .24rem;
                         color: #999;
+
+                        .up{
+                          width: 60%;
+                          float: left;
+                          line-height: .3rem;
+                          display: inline-block;
+                          text-overflow: ellipsis;
+                          overflow: hidden;
+                          white-space: nowrap;
+                        }
                         .iconfont{
-                            font-size: .28rem;
+                            font-size: .24rem;
+                            line-height: .3rem;
                         }
                         .look_num{
-                            float: right;
+                          text-align: right;
+                            display: inline-block;
+                            width: 40%;
+                            line-height: .3rem;
+                            float: left;
+                            overflow: hidden;
+
                         }
                     }
 

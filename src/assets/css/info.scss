@@ -66,7 +66,6 @@ $prim: #fff;
   position: relative;
   overflow: hidden;
   z-index: 996;
-  border-bottom: .1rem solid #fafafa;
 
   .load_layer{
     position: absolute;
@@ -76,13 +75,12 @@ $prim: #fff;
     color: #fff;
     z-index: 999;
     overflow: hidden;
-
-    img{
-      display: inline-block;
-      position: relative;
+    .cover_pic{
       width: 100%;
       height: 100%;
-      opacity: .85;
+      background-position: 50% 50%;
+      background-size: cover;
+      background-color: #000;
     }
     .load_player_icon{
       position: absolute;
@@ -108,10 +106,13 @@ $prim: #fff;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: #000;
     video{
       width: 100%;
-      position: relative;
+      position: absolute;
       float: left;
+      top: 0;
+      object-fit: contain;
     }
   }
 
@@ -275,6 +276,9 @@ $prim: #fff;
     float:left;
     line-height: 1rem;
     font-size:.24rem;
+    a{
+      color: #8fdac6;
+    }
     .iconfont{
       font-size: .5rem;
       line-height: 1rem;
@@ -460,7 +464,7 @@ $prim: #fff;
       .right_video_info{
         .video_title{
           display: block;
-          max-height:.8rem;
+          height:.8rem;
           line-height: .4rem;
           font-size: .28rem;
           color: #333;
@@ -476,7 +480,9 @@ $prim: #fff;
 
           span{
             display: inline-block;
+            overflow: hidden;
             width: 50%;
+            height: .4rem;
             float: left;
           }
         }

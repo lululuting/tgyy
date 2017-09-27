@@ -34,10 +34,8 @@
       color: #fff !important; }
   .theme_black .modular_box .look_num .iconfont {
     color: #999 !important; }
-  .theme_black .top_box {
-    background: #333; }
-    .theme_black .top_box .iconfont {
-      color: #fff !important; }
+  .theme_black .top_box .iconfont {
+    color: #fff !important; }
   .theme_black .top_bg {
     background: #333 !important; }
   .theme_black .info_option .option {
@@ -95,6 +93,8 @@
     border-top-color: #fff !important;
     border-left-color: #fff !important;
     border-bottom-color: #fff !important; }
+  .theme_black .player_box {
+    border-color: #666 !important; }
   .theme_black .video_action_box {
     background-color: #333 !important;
     border-color: #666 !important; }

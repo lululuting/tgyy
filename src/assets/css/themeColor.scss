@@ -85,7 +85,7 @@ $fc_f3:#bcbcbc !important;
 
 
   .top_box{
-    background: $bgc_f3;
+
     .iconfont{
       color: $fc_f2;
     }
@@ -201,7 +201,9 @@ $fc_f3:#bcbcbc !important;
 
 
 
-
+  .player_box{
+    border-color: $bgc_f1;
+  }
 
   .video_action_box{
     background-color: $bgc;

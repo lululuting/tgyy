@@ -104,7 +104,7 @@
 
 
 <script>
-  require('../../static/flexText/flexText.min.js');
+  require('../../static/lib/flexText/flexText.min.js');
   import Cropper from 'cropperjs';
   export default{
     data() {
@@ -313,8 +313,8 @@
   }
 </style>
 <style lang="scss" scoped>
-  @import "../../static/cropper/cropper.min.css";
-  @import "../../static/flexText/flexText.css";
+  @import "../../static/lib/cropper/cropper.min.css";
+  @import "../../static/lib/flexText/flexText.css";
 
   .top_box {
     position: fixed;

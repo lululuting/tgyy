@@ -28,6 +28,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // 关闭烦人的eslint-loade代码检查
       // {
       //   test: /\.(js|vue)$/,
       //   loader: 'eslint-loader',

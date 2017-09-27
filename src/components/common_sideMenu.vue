@@ -64,8 +64,7 @@
                   localStorage.setItem('theme',0);
                 }
 
-              console.log(localStorage.getItem("theme"));
-              console.log(this.themeColor)
+              console.log((this.themeColor)?'暗夜之美':'葱油绿意')
 
             }
         },
@@ -80,8 +79,6 @@
             $('.left_box .left_nav').click(function () {
               $this.sideMenu=true;
             });
-          console.log(localStorage.getItem("theme"))
-          console.log(this.themeColor)
         }
     }
 

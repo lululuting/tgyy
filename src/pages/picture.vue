@@ -163,11 +163,8 @@
     </div>
 
     <div class="c-9 f24" style="text-align: center; padding:.2rem 0">那种网站怎么可能会有备案呢(ღ˘⌣˘ღ)</div>
-
   </div>
 </template>
-<script src="../../static/photo-sphere-viewer/three.min.js"></script>
-<script src="../../static/photo-sphere-viewer/photo-sphere-viewer.min.js"></script>
 <script>
   export default {
     data(){
@@ -179,7 +176,6 @@
       }
     },
     methods: {
-
       // 打开介绍
       videoIndoOpen: function () {
         this.openInfo = !this.openInfo;
@@ -215,8 +211,6 @@
           $this.topBg = false;
         }
       });
-
-
 
       let div = document.getElementById('your-pano');
       var i = new PhotoSphereViewer({
@@ -292,7 +286,6 @@
     },
   }
 </script>
-  }
 <style lang="scss" scoped>
   @import "../assets/css/info.css";
 </style>
