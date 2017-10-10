@@ -13,7 +13,7 @@
 （都未完成）
 
 # 技术栈
-vue2 vue-route vue-resource axios scss rem jquery 
+vue2 mimt-ui vue-route axios scss rem jquery 
 
 # 数据来源
 b站 和 网易云音乐
