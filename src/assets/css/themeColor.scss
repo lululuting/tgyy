@@ -21,7 +21,10 @@ $fc_f3:#bcbcbc !important;
     color: $fc;
 
     .user_box {
-      background: url('../../assets/images/user_box_bg_12312ad.png') black 50% 50% no-repeat !important;
+      background-image: url('../../assets/images/user_box_bg_12312ad.png') !important;
+      background-color: black;
+      background-position: 50% 50% ;
+      background-repeat: no-repeat;
     }
 
     .nav_list li a,

@@ -14,14 +14,13 @@
 </script>
 <style lang="scss" scoped>
   .return_top .iconfont{
-      font-size: .8rem;
+      font-size: .6rem;
       color: #fff;
-      border: .05rem solid #fffdef;
       padding: .05rem;
       background-color: rgba(51, 51, 51, 0.31);
       position: fixed;
       right: .5rem;
       bottom: .5rem;
-      z-index:888;
+      z-index:9999;
   }
 </style>

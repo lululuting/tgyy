@@ -14,14 +14,17 @@
         <i class="iconfont icon-rankfill c-ef7222"></i>
         <p class="tit">排行</p>
       </router-link>
-      <div class="nav_option waves-effect waver-button">
-        <i class="iconfont icon-creativefill c-ffbe4a"></i>
-        <p class="tit">看点</p>
-      </div>
+
       <router-link to="/musicList" class="nav_option waves-effect waver-button">
+        <i class="iconfont icon-musicfill c-ffbe4a"></i>
+        <p class="tit">听歌</p>
+      </router-link>
+
+      <div  class="nav_option waves-effect waver-button">
         <i class="iconfont icon-gaoqingshexiang c-62c7db"></i>
         <p class="tit">高清</p>
-      </router-link>
+      </div>
+
       <router-link to="/ranking" class="nav_option waves-effect waver-button">
         <i class="iconfont icon-shoufei c-8fdac6"></i>
         <p class="tit">氪金</p>
@@ -90,7 +93,6 @@
 
           <div class="info">
             <div class="title">{{item.title}}</div>
-
             <div class="up_name">
               <span class="up">{{item.author}}</span>
               <span class="look_num"><i class="iconfont icon-yanjing"></i>{{formatPlayNum(item.play)}}</span>
@@ -131,7 +133,6 @@
   export default {
     data() {
       return {
-        // 模拟banner图片数据
         banner:[],
         gc:[],
         jp:[],
@@ -141,7 +142,6 @@
     },
     created () {
       let $this =this;
-
       let banner_url = 'http://api.bilibili.com/x/web-show/res/loc?jsonp=jsonp&pf=0&id=23&_=1482805801599';//轮播数据
 
       //按3天内排行高到底 每类截10条

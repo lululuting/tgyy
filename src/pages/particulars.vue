@@ -303,7 +303,6 @@
             let bufferPercent = timeBuffered / video.duration * 100;
             $('.loading_line').css("width", bufferPercent + "%");
             if (video.ended)clearLoading(); // 视频结束时 结束缓冲定时器
-            console.log('缓冲中。。。')
           },1000);
         }
       },
@@ -318,15 +317,11 @@
         if (video.paused){
           clearInterval($this.getCurrentTime); //先清除定时器 预防万一
 
-
           this.state=true;
           this.loading=false;
 
-
           video.play();
           $this.dsq(); //在开启视频定时器
-
-
 
           if(video.ended){
             clearInterval(this.getCurrentTime); //播放完清除视频定时器
@@ -570,7 +565,7 @@
       let v_url = 'https://api.imjad.cn/bilibili/v2/?aid='+this.$route.query.aid+'&page=1&quality=3&type=mp4';
       // 视频信息
       let info_url = 'https://api.imjad.cn/bilibili/v2/?aid='+this.$route.query.aid;
-//      // 评论信息 按点赞最多来排
+      // 评论信息 按点赞最多来排
       let comments_url = 'https://api.imjad.cn/bilibili/v2/?get=comments&aid='+this.$route.query.aid+'&sort=2';
 
 
@@ -706,9 +701,7 @@
       selectPosition();
 
       //选择颜色 用的paletteColorPicker插件
-      // Advanced exacmple
       $('[name="color"]').paletteColorPicker({
-        // Color in { key: value } format
         colors: [
           {"红": "#E91E63"},
           {"橙": "#ef7222"},
@@ -719,23 +712,13 @@
           {"紫": "#b0388b"},
           {"粉": "#F8BBD0"},
         ],
-        // Add custom class to the picker
         custom_class: 'double',
-        // Force the position of picker's bubble
-        position: 'downside', // default -> 'upside'
-        // Where is inserted the color picker's button, related to the input
-        insert: 'after', // default -> 'before'
-        // Don't add clear_btn
-        clear_btn: 'last', // null -> without clear button, default -> 'first'
-        // Timeout for the picker's fade out in ms
-        timeout: 2000, // default -> 2000
-        // Forces closin all bubbles that are open before opening the current one
-        close_all_but_this: false, // default is false
-        // Sets the input's background color to the selected one on click
-        // seems that some users find this useful ;)
-        set_background: false, // default is false
-
-        // Callback on change value
+        position: 'downside',
+        insert: 'after',
+        clear_btn: 'last',
+        timeout: 2000,
+        close_all_but_this: false,
+        set_background: false,
         //回调
         onchange_callback: function( clicked_color ) {
           $this.barrageColor = clicked_color;

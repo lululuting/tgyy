@@ -378,7 +378,7 @@
 
       let $this = this;
       let music = document.getElementById('music');
-      let ml_id = '372554249'; //歌单id
+      let ml_id = 372554249; //歌单id
 
       let ml_url = 'https://api.imjad.cn/cloudmusic/?type=playlist&id='+ ml_id;
       this.$axios.get(ml_url).then(function (res) {
@@ -436,9 +436,6 @@
   }
 </script>
 <style lang="scss" scoped>
-  .theme_black .top_box{
-    background: #333 ;
-  }
 
   .top_box {
     position: fixed;
@@ -486,7 +483,7 @@
     left:0;
     top:0;
     background-position: center center;
-    background-size: 5000%;
+    background-size: 8000000%;
   }
 
   .top_pic_box{
@@ -717,7 +714,8 @@
     width: 100%;
     height: 1rem;
     position: fixed;
-    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    background: rgba(255, 255, 255,1);
     bottom: 0;
 
     .m_pic{
@@ -734,7 +732,7 @@
       width: 100%;
       padding: 0 2rem 0 1rem;
       margin-top: .1rem;
-      z-index: 998;
+      z-index: 1000;
       display: block;
       box-sizing: border-box;
       overflow: hidden;
