@@ -10,9 +10,9 @@
 h5弹幕视频播放器
 h5音乐播放器
 全景图查看器
-（以上全未完成）
+（都未完成）
 
-# 技术栈（这三个字感觉好高大上）
+# 技术栈
 vue2 vue-route vue-resource axios scss rem jquery 
 
 # 数据来源
