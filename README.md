@@ -24,7 +24,7 @@ vue2 mimt-ui vue-route axios scss rem jquery
 # UI界面
 主要是参考b站和网易云音乐，再结合我自己的一些想法，再胡乱瞎搞。最后得出这个四不像的东西！ 23333333。
 
-![image](https://github.com/lululuting/pic/raw/master/screenshots/vim-screenshot.jpg)
+![image](https://github.com/lululuting/pic/raw/master/preview/QQ截图20171010144310.png)
 
 
 # 数据来源
