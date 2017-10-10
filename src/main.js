@@ -46,14 +46,35 @@ Vue.prototype.formatCommentsTime = function (publishTime){
     return y + '-' + m + '-' + d;
   }
 }
+
 //格式播放时间
 Vue.prototype.formatTime=function (second) {
   return [parseInt(second / 60 ), second% 60].join(":").replace(/\b(\d)\b/g, "0$1");
 }
+
 //格式播放播放量和弹幕量
 Vue.prototype.formatPlayNum = function (num) {
   return (num>10000)?(Math.round(num) / 10000).toFixed(1)+'万':num;
 }
+
+//格式化歌词
+Vue.prototype.createLrc = function(relrc,musicLrc) {
+  let lrcList =  relrc.split("\n");
+
+  $.each(lrcList, function (i, item) {
+    let t = item.substring(item.indexOf("[") + 1, item.indexOf("]"));
+
+    console.log(typeof musicLrc);
+
+    musicLrc.push({
+      time: (t.split(":")[0] * 60 + parseFloat(t.split(":")[1])).toFixed(3),
+      text: item.substring(item.indexOf("]") + 1, item.length)
+    });
+  });
+
+  return musicLrc;
+};
+
 
 
 

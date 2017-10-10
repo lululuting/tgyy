@@ -9,7 +9,8 @@ import login from '@/pages/login'
 import register from '@/pages/register'
 import picture from '@/pages/picture'
 import ranking from '@/pages/ranking'
-import music from '@/pages/music'
+import musicList from '@/pages/musicList'
+
 
 
 
@@ -55,10 +56,9 @@ export default new Router({
       component: picture //注册 picture
     },
     {
-      name:'music',
-      path: '/music',
-      component: music // 注册music
-
+      name:'musicList',
+      path: '/musicList',
+      component: musicList // 注册music
     },
     {
       name:'ranking',

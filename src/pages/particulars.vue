@@ -541,8 +541,6 @@
             barrage.style.transform = 'translateX('+ -itemWidth +'px)';// 弹幕定位 这个还是用px吧
           }
 
-
-
           barrage.setAttribute("time", t);
           barrage.setAttribute("thisWidth", barrage.clientWidth);
 

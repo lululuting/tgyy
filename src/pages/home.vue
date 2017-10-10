@@ -1,12 +1,16 @@
 <template lang="html">
   <div>
     <_header v-on:tabName="getTabName"></_header>
-    <_sideMenu></_sideMenu>
-    <_returnTop></_returnTop>
-    <div class="main">
-      <component :is='currentView' keep-alive></component>
-    </div>
 
+    <_sideMenu></_sideMenu>
+
+    <_returnTop></_returnTop>
+
+    <div class="main">
+      <transition name="fade" mode="out-in">
+        <component :is='currentView' keep-alive></component>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -58,6 +62,9 @@
       _tabJapanKorea,
       _tabOccident,
       _tabPicture,
+    },
+    beforeDestroy:function(){
+      $(window).off();//解除bind事件
     }
   }
 </script>
@@ -65,5 +72,4 @@
   .main {
     overflow: hidden;
   }
-
 </style>

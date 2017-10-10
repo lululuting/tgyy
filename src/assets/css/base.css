@@ -123,3 +123,18 @@ i,em{font-style: normal;}
 .lh100{line-height: 1rem; }
 
 .mt100{margin-top: 1rem}
+
+
+
+
+
+/*过渡动画*/
+.fade-enter-active,
+.fade-leave-active{
+   transition: all .5s ease
+ }
+
+.fade-enter,
+.fade-leave-active {
+   opacity: 0
+ }

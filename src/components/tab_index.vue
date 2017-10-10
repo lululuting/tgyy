@@ -14,11 +14,11 @@
         <i class="iconfont icon-rankfill c-ef7222"></i>
         <p class="tit">排行</p>
       </router-link>
-      <router-link to="/music" class="nav_option waves-effect waver-button">
+      <div class="nav_option waves-effect waver-button">
         <i class="iconfont icon-creativefill c-ffbe4a"></i>
         <p class="tit">看点</p>
-      </router-link>
-      <router-link to="/ranking" class="nav_option waves-effect waver-button">
+      </div>
+      <router-link to="/musicList" class="nav_option waves-effect waver-button">
         <i class="iconfont icon-gaoqingshexiang c-62c7db"></i>
         <p class="tit">高清</p>
       </router-link>
@@ -204,7 +204,7 @@
 
     }
     .bg_box{
-        background: #fafafa;
+        background: rgba(255, 255, 255, 0);
     }
     .classify_nav{
         overflow: hidden;
