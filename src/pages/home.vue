@@ -25,33 +25,36 @@
   export default {
     data(){
       return{
-        currentView: '_tabIndex'
+        currentView: '_tabIndex',// 初始动态组件名称
+        scrolled:0,//滚动条top距离
       }
     },
     methods: {
       getTabName: function (tabName){
         this.currentView = tabName
+      },
+      handleScroll:function() {
+        let $this = this;
+        $this.scrolled = window.scrollY;
+
+        let nav = $('.top_nav');
+        let main = $('.main');
+        let returnTop = $('.return_top');
+
+        if ($this.scrolled > nav.outerHeight()) {
+          nav.addClass('nav_fixed');
+          main.addClass('mt100');
+          returnTop.show();
+        } else {
+          nav.removeClass('nav_fixed');
+          main.removeClass('mt100');
+          returnTop.hide();
+        }
       }
     },
-    mounted: function () {// 相当于$(function(){...code..})
-
-      // 头部滚动显隐
-      let l_top=0;
-      $(window).scroll(function(){
-        let n_top = $(window).scrollTop();
-        if(n_top>100){
-          $('.top_nav').addClass('nav_fixed');
-          $('.main').addClass('mt100');
-
-          $('.return_top').show();
-        }else{
-          $('.top_nav').removeClass('nav_fixed');
-          $('.main').removeClass('mt100');
-
-          $('.return_top').hide();
-        }
-        l_top=n_top;
-      });
+    mounted: function () {
+      // 监听滚动条事件
+      window.addEventListener('scroll', this.handleScroll);
     },
     components: {
       _header,
@@ -63,7 +66,7 @@
       _tabOccident,
       _tabPicture,
     },
-    beforeDestroy:function(){
+    beforeDestroy:function(){ // 生命周期beforeDestroy钩子函数，发生在即将离开组件之前
       $(window).off();//解除bind事件
     }
   }

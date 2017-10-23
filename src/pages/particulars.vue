@@ -281,30 +281,25 @@
       loadPlayer:function () {
 
         let $this = this;
-        $('.load_layer').hide();
         this.screenHeight = $('.player_box').outerHeight(); //记录播放器高度
 
-        if (video.paused) {
-          video.play();
-          $('.load_layer').hide();
-          this.state=true;
-          this.topShowHide=false;
-          this.dsq(); //播放开启定时器
 
-          // 缓冲 ！没有退路了!
-          function clearLoading() {
-            clearInterval($this.loadingProgress)
-          }
+        $('.load_layer').hide();
 
-          //缓冲条
-          $this.loadingProgress = setInterval(function () {
-            let timeRanges = video.buffered;
-            let timeBuffered = timeRanges.end(timeRanges.length - 1);
-            let bufferPercent = timeBuffered / video.duration * 100;
-            $('.loading_line').css("width", bufferPercent + "%");
-            if (video.ended)clearLoading(); // 视频结束时 结束缓冲定时器
-          },1000);
-        }
+        this.state=true;
+        this.topShowHide=false;
+
+        //缓冲条
+        $this.loadingProgress = setInterval(function () {
+          let timeRanges = video.buffered;
+          let timeBuffered = timeRanges.end(timeRanges.length - 1);
+          let bufferPercent = timeBuffered / video.duration * 100;
+          $('.loading_line').css("width", bufferPercent + "%");
+
+          if (video.ended)clearInterval($this.loadingProgress); // 视频结束时 结束缓冲定时器
+
+        },100);
+
       },
       // 播放控件显隐
       showPlayer:function () {
@@ -315,39 +310,29 @@
       player: function () {
         let $this = this;
         if (video.paused){
-          clearInterval($this.getCurrentTime); //先清除定时器 预防万一
 
           this.state=true;
           this.loading=false;
 
-          video.play();
-          $this.dsq(); //在开启视频定时器
-
           if(video.ended){
-            clearInterval(this.getCurrentTime); //播放完清除视频定时器
+            $this.state=false;
             $('.video_end').css('display','flex');
           }
-
         }else {
           $this.state=false;
-          clearInterval($this.getCurrentTime); //暂停清除定时器
-
-          video.pause();
         }
       },
       // 重播
       rePlay:function () {
-
         video.play();
-        this.ifShow=false;
-        this.topShowHide =this.ifShow;
+        this.state=true;
 
+        this.ifShow=false;
+
+        this.topShowHide =this.ifShow;
         $('.video_end').hide();
 
-        $('.timeline').children('.progress_line').css('width','0');
-        clearTimeout(this.getCurrentTime); //暂停清除定时器 预防万一
-
-        this.dsq();// 播放开启定时器
+        $('.timeline .progress_line').css('width','0px');
 
       },
       // 播放时间与进度条 主要定时器 弹幕和进度条
@@ -363,7 +348,6 @@
             $this.loading = true;
           }
 
-
           // 播放进度
           $this.videoCurrentTime=$this.formatTime(Math.floor(video.currentTime));
 
@@ -373,10 +357,6 @@
             $('.timeline').children('.progress_line').css('width',$width+'px');
 
             if(video.ended){
-              $(document).off();
-
-              clearInterval($this.getCurrentTime);
-
               $this.ifShow=false;
               $this.topShowHide =true;
               $this.videoFull=false;
@@ -390,8 +370,7 @@
             let vTime = Math.floor(video.currentTime);
 
             for (let i =0;i<$this.barrageJson.length;i++){
-
-              if($this.barrageJson[i].time == vTime && !video.paused){
+              if($this.barrageJson[i].time==vTime){
                 //创建弹幕
                 let barrage = document.createElement("span");
                 let itemWidth = $this.barrageJson[i].width + boxWidth;
@@ -443,23 +422,22 @@
       // 打开视频介绍
       videoIndoOpen:function () {
         this.openInfo=!this.openInfo;
-        let $height = $('.video_info_box .info').height()+$('.crumbs_nav').height()+40;
+        let $height = $('.video_info_box .info').height()+$('.crumbs_nav').height()+40;// 40是内边距
         if (this.openInfo){
-          $('.video_info_box .info_box ').css('height',$height/100+'rem');
+          $('.video_info_box .info_box ').css('height',$height+'px');
         }else {
           $('.video_info_box .info_box ').css('height','.4rem');
-
         }
       },
       // 点赞
       clickPraise:function () {
         // ajax code...
         this.v.ifLike =!this.v.ifLike;
-        if ( this.v.ifLike){
-          this.v.likeNum-=1;
+        if (this.v.ifLike){
+          this.v.likeNum+=1;
           //还要一些ajax 后台操作库的 code..
         }else{
-          this.v.likeNum+=1;
+          this.v.likeNum-=1;
           //还要一些ajax 后台操作库的 code..
         }
       },
@@ -470,10 +448,10 @@
       clickCollection:function () {
         this.v.ifCollect=!this.v.ifCollect;
         if ( this.v.ifCollect){
-          this.v.collectNum-=1;
+          this.v.collectNum+=1;
            //还要一些ajax 后台操作库的 code..
         }else{
-          this.v.collectNum+=1;
+          this.v.collectNum-=1;
           //还要一些ajax 后台操作库的 code..
         }
       },
@@ -511,29 +489,30 @@
           let itemWidth = barrage.clientWidth + boxWidth;// 获取弹幕+屏幕宽度
 
 
+          // 3种模式 上固定、 下固定、 左到右滚动
+
           if($this.barragePosition==1) {
             ranDomLine = Math.floor(Math.random() * lineNumMin); // 随机分行
             y = (ranDomLine * 32); //top位置 32是弹幕的行高
 
             console.log(lineNum/2);
-            barrage.style.top = y + 'px';// 弹幕top定位 这个还是用px吧
+            barrage.style.top = y + 'px';// 弹幕top定位
             barrage.style.left = (boxWidth - barrage.clientWidth) / 2 + 'px';// 弹幕居中定位
             barrage.style.transform = "translateX(0px)";// 弹幕定位 这个还是用px吧
           }else if($this.barragePosition==3){
 
             ranDomLine =  Math.floor(Math.random()*(lineNum-lineNumMin)+lineNumMin);// 随机分行
-
             y = (ranDomLine*32); //top位置 32是弹幕的行高
 
-            barrage.style.top = y+'px';// 弹幕top定位 这个还是用px吧
+            barrage.style.top = y+'px';// 弹幕top定位
             barrage.style.left= (boxWidth - barrage.clientWidth)/2+'px';// 弹幕居中定位
-            barrage.style.transform = "translateX(0px)";// 弹幕定位 这个还是用px吧
+            barrage.style.transform = "translateX(0px)";// 弹幕定位
           }else {
             ranDomLine = Math.floor(Math.random() * lineNum); // 随机分行
             y = (ranDomLine*32); //top位置 32是弹幕的行高
 
             barrage.style.top = y+'px';// 弹幕top定位 这个还是用px吧
-            barrage.style.transform = 'translateX('+ -itemWidth +'px)';// 弹幕定位 这个还是用px吧
+            barrage.style.transform = 'translateX('+ -itemWidth +'px)';// 弹幕定位
           }
 
           barrage.setAttribute("time", t);
@@ -551,7 +530,6 @@
 
     },
     created (){
-
       let $this = this;
       this.$axios.get('../../static/barrageJson.json').then(function (res) {
         $this.barrageJson = res.data.list;
@@ -559,16 +537,12 @@
         console.log(res+'获取弹幕文件失败！')
       });
 
-
-
       // 视频链接
       let v_url = 'https://api.imjad.cn/bilibili/v2/?aid='+this.$route.query.aid+'&page=1&quality=3&type=mp4';
       // 视频信息
       let info_url = 'https://api.imjad.cn/bilibili/v2/?aid='+this.$route.query.aid;
       // 评论信息 按点赞最多来排
       let comments_url = 'https://api.imjad.cn/bilibili/v2/?get=comments&aid='+this.$route.query.aid+'&sort=2';
-
-
 
       this.$axios.get(v_url).then(function(res){
         $this.v.videoTime= $this.formatTime(Math.floor(res.data.timelength/1000));
@@ -603,8 +577,6 @@
       },function(res) {
         console.log(res.status+'获取评论信息失败！')
       });
-
-
     },
     mounted () {
       let $this=this;
@@ -630,26 +602,23 @@
       // 3秒后隐藏播放控件
       $(document).on('click touchend touchmove','.video_box,.top_box',function() {
         clearInterval($this.towSecsHide);
-        if(!video.paused && $(window).scrollTop()<=$('.player_box').height()-$('.top_box').height()){
+        if(!video.paused){
           $this.towSecsHide = setTimeout(function () {
             $this.ifShow=false;
-            $this.topShowHide =$this.ifShow;
+            $this.topShowHide=$this.ifShow;
           },3000)
         }
       });
 
       //横竖屏切换
       $(window).on("orientationchange",function(){
-//        // 如果想横竖屏切换时停止播放就开启这段注释
-//        clearInterval($this.towSecsHide);
-//        clearTimeout($this.getCurrentTime);
-//        $this.ifShow=true;
-//        $this.state=false;
-//        video.pause();
+
+        // $this.state=false; //横竖屏切换时停止播放
 
         let timelineWidth = $(window).width()*.8*.5;
         let $width = timelineWidth/video.duration*video.currentTime;
-        $('.timeline').children('.progress_line').css('width',$width+'px');
+
+        $('.timeline .progress_line').css('width',$width+'px');
       });
 
       //  播放时播放器fixed在最上方 暂停时视频可以跟滚动条滑动。还有一些top_nav的一些变化 和 横竖屏时播放暂停时播放器fixed 下面元素对空缺位margin-top的补位
@@ -730,8 +699,13 @@
     watch: {
       state() {
         if (this.state){
+          video.play();
+          this.dsq();// 播放开启定时器
           $('.video_action_box').css('margin-top',this.screenHeight+'px');
           $('.player_box').addClass('video_fixed');
+        }else {
+          video.pause();
+          clearTimeout(this.getCurrentTime); //暂停清除定时器
         }
       },
     }
