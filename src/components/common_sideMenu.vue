@@ -99,7 +99,7 @@
           padding:.4rem;
           overflow: hidden;
           box-sizing: border-box;
-          background: url('../assets/images/user_box_bg_0123asd.png') $themeColor 50% 50% no-repeat;
+          background: url('/static/images/user_box_bg_0123asd.png') $themeColor 50% 50% no-repeat;
 
           background-size: cover;
 

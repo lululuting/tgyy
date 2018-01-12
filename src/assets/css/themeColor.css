@@ -4,7 +4,7 @@
     background: #333 !important;
     color: #999 !important; }
     .theme_black .menu_box .user_box {
-      background-image: url("../../assets/images/user_box_bg_12312ad.png") !important;
+      background-image: url("/static/images/user_box_bg_12312ad.png") !important;
       background-color: black;
       background-position: 50% 50%;
       background-repeat: no-repeat; }

@@ -239,12 +239,12 @@
         topShowHide:true, // 头部显隐
         video : document.getElementById('video'), // 目标视频元素
         v:{
-          videoUrl:'',// 链接
+          videoUrl:'http://v4.music.126.net/20180112111945/313f22573a323471d0870b45e88a75cf/web/cloudmusic/mv/20170929071627/0aa909f6-6214-41ef-8b68-38e5b388629a/5c6b8ca911b7c02767bcd9cad6166e43.mp4',// 链接 接口爆炸先固定一个
           videoTitle:'',// 标题
-          videoPic:'',// 封面
+          videoPic:'http://p4.music.126.net/7907kOQTuLYaMY4mHMB0_A==/109951163023681008.jpg?param=640y300',// 封面 接口爆炸先固定一个
           videoView:0,// 播放量
           videoDanmu:0,// 弹幕量
-          videoTime:'00:00',// 时长
+          videoTime:'04:43',// 时长
           videoUp:'',// up主
           videoTname:'',// 所属分类
           videoRelates:[],// 视频相关
@@ -530,6 +530,8 @@
 
     },
     created (){
+      // 接口爆炸了 先用本地的
+      /*
       let $this = this;
       this.$axios.get('../../static/barrageJson.json').then(function (res) {
         $this.barrageJson = res.data.list;
@@ -577,6 +579,7 @@
       },function(res) {
         console.log(res.status+'获取评论信息失败！')
       });
+      */
     },
     mounted () {
       let $this=this;

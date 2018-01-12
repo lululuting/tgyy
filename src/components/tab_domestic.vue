@@ -7,7 +7,7 @@
       </div>
 
       <ul class="list_box">
-        <li class="item waves-effect  waves-light">
+        <router-link to="/particulars" class="item waves-effect  waves-light">
           <div class="pic_box">
             <img src="../assets/images/banner_01.jpg" alt="">
           </div>
@@ -19,8 +19,8 @@
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
             </div>
           </div>
-        </li>
-        <li class="item waves-effect  waves-light">
+        </router-link>
+        <router-link to="/particulars"  class="item waves-effect  waves-light">
           <div class="pic_box">
             <img src="../assets/images/banner_01.jpg" alt="">
           </div>
@@ -32,8 +32,8 @@
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
             </div>
           </div>
-        </li>
-        <li class="item waves-effect  waves-light">
+        </router-link >
+        <router-link to="/particulars" class="item waves-effect  waves-light">
           <div class="pic_box">
             <img src="../assets/images/banner_01.jpg" alt="">
           </div>
@@ -45,7 +45,7 @@
               <span class="look_num"><i class="iconfont icon-yanjing"></i>20</span>
             </div>
           </div>
-        </li>
+        </router-link>
         <li class="item waves-effect  waves-light">
           <div class="pic_box">
             <img src="../assets/images/banner_01.jpg" alt="">

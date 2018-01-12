@@ -15,13 +15,11 @@ $fc_f3:#bcbcbc !important;
 
 .theme_black {
   background: $bgc;
-
   .menu_box {
     background: $bgc;
     color: $fc;
-
     .user_box {
-      background-image: url('../../assets/images/user_box_bg_12312ad.png') !important;
+      background-image: url('/static/images/user_box_bg_12312ad.png') !important;
       background-color: black;
       background-position: 50% 50% ;
       background-repeat: no-repeat;

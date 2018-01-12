@@ -172,7 +172,6 @@
       },function(res) {
         console.log(res.status+'欧美请求失败！');
       });
-
     },
   }
 </script>
@@ -344,17 +343,10 @@
                             line-height: .3rem;
                             float: left;
                             overflow: hidden;
-
                         }
                     }
-
                 }
             }
-
         }
-
-
     }
-
-
 </style>
